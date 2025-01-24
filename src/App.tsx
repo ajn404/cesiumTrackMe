@@ -2,7 +2,7 @@ import { useEffect } from "react"
 
 export default () => {
   useEffect(() => {
-    console.log(import.meta.env)
+    console.log(import.meta.env.VITE_ION_TOKEN)
     return () => {
       
     } 
