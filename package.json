@@ -6,6 +6,7 @@
     "build": "pnpm -F cesium-hooks build"
   },
   "devDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "vite": "^5.0.0"
   }
 }

@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ... */
-
 @layer base {
   :root {
 
@@ -148,4 +146,9 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+body{
+    padding: 0;
+    margin: 0;
 }
