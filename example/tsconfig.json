@@ -5,7 +5,8 @@
     "moduleResolution": "bundler",
     "baseUrl": ".",
     "paths": {
-      "cesium-hooks": ["../packages/cesium-hooks/src"]
+      "cesium-hooks": ["../packages/cesium-hooks/src"],
+      "@/*": ["./src/*"]
     },
     "jsx": "react-jsx"
   },
