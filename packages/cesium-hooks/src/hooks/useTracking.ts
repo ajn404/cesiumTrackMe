@@ -1,50 +1,66 @@
-import { useEffect, useRef } from "react";
-import { Viewer, Entity, Cartesian3, Color, ConstantPositionProperty } from "cesium";
-import * as Cesium from "cesium";
+import { MutableRefObject } from 'react'
+import { Viewer, Entity, Color, Cartesian3 } from 'cesium'
 
-interface UseTrackingProps {
-    viewer: Viewer;
-    position: { longitude: number, latitude: number, height: number };
+interface TrackingPoint {
+  position: Cartesian3
+  point?: {
+    pixelSize?: number
+    color?: Color
+  }
 }
 
-export const useTracking = ({ viewer, position }: UseTrackingProps) => {
-    const entityRef = useRef<Entity>();
+interface TrackingOptions {
+  pathColor?: Color
+  pathWidth?: number
+  followDistance?: number
+}
 
-    useEffect(() => {
-        if (!entityRef.current) {
-            entityRef.current = viewer.entities.add({
-                position: Cartesian3.fromDegrees(
-                    position.longitude,
-                    position.latitude,
-                    position.height
-                ),
-                point: {
-                    pixelSize: 10,
-                    color: Color.RED
-                }
-            });
-        } else {
-            entityRef.current.position = new ConstantPositionProperty(
-                Cartesian3.fromDegrees(
-                    position.longitude,
-                    position.latitude,
-                    position.height
-                )
-            );
-        }
-    }, [viewer, position]);
+export function useTracking(viewerRef: MutableRefObject<Viewer | undefined>) {
+  const points: Cartesian3[] = []
+  let pathEntity: Entity | undefined
 
-    return {
-        updatePosition: (position: { longitude: number, latitude: number, height: number }) => {
-            if (entityRef.current) {
-                entityRef.current.position = new Cesium.ConstantPositionProperty(
-                    Cartesian3.fromDegrees(
-                        position.longitude,
-                        position.latitude,
-                        position.height
-                    )
-                );
-            }
-        }
-    };
-};
+  const addTrackingPoint = (point: TrackingPoint) => {
+    if (!viewerRef.current) return
+
+    points.push(point.position)
+
+    viewerRef.current.entities.add({
+      position: point.position,
+      point: {
+        pixelSize: point.point?.pixelSize ?? 8,
+        color: point.point?.color ?? Color.RED
+      }
+    })
+  }
+
+  const startTracking = (options: TrackingOptions = {}) => {
+    if (!viewerRef.current || points.length < 2) return
+
+    pathEntity = viewerRef.current.entities.add({
+      polyline: {
+        positions: points,
+        width: options.pathWidth ?? 2,
+        material: options.pathColor ?? Color.YELLOW
+      }
+    })
+
+    if (options.followDistance) {
+      viewerRef.current.camera.lookAt(
+        points[points.length - 1],
+        new Cartesian3(0, -options.followDistance, options.followDistance)
+      )
+    }
+  }
+
+  const stopTracking = () => {
+    if (!viewerRef.current || !pathEntity) return
+    viewerRef.current.entities.remove(pathEntity)
+    points.length = 0
+  }
+
+  return {
+    addTrackingPoint,
+    startTracking,
+    stopTracking
+  }
+}
