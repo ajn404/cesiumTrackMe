@@ -1,4 +1,4 @@
-import { useCesium } from "./hooks/useCesium";
+import { useCesium } from "./index";
 import { useEffect } from "react";
 
 export default () => {
@@ -8,8 +8,8 @@ export default () => {
     if (viewer.current) {
       console.log(viewer.current, viewer.current.camera)
     }
-
   }, []);
+
   return (
     <>
       <div
