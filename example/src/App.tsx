@@ -4,10 +4,13 @@ import { BasicMap, Tracking, Terrain, Layers, Controls, Drawing } from "./pages"
 
 export default function App() {
   return (
-    <BrowserRouter future={{ 
-      v7_startTransition: true,
-      v7_relativeSplatPath: true 
-    }}>
+    <BrowserRouter 
+      basename="/cesium"
+      future={{ 
+        v7_startTransition: true,
+        v7_relativeSplatPath: true 
+      }}
+    >
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<BasicMap />} />
