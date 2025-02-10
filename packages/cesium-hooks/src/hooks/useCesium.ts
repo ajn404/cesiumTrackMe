@@ -1,20 +1,20 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type RefObject, type MutableRefObject } from "react";
 import { Viewer, Ion } from "cesium";
 import "cesium/Build/Cesium/Widgets/widgets.css";
 
 interface UseCesiumReturn {
-    cesiumContainerRef: React.RefObject<HTMLDivElement>;
-    viewer: React.MutableRefObject<Viewer | undefined>;
+    cesiumContainerRef: RefObject<HTMLDivElement>;
+    viewer: MutableRefObject<Viewer | undefined>;
 }
 
 // 自定义 Hook，用于初始化 Cesium 和管理生命周期
-export const useCesium = (): UseCesiumReturn => {
+export const useCesium = (token:string): UseCesiumReturn => {
     const cesiumContainerRef = useRef<HTMLDivElement>(null);
     const viewerRef = useRef<Viewer>();
 
 
     // 设置 Cesium 的默认访问令牌
-    Ion.defaultAccessToken = import.meta.env.VITE_ION_TOKEN;
+    Ion.defaultAccessToken = token;
 
     useEffect(() => {
         if (cesiumContainerRef.current && !viewerRef.current) {

@@ -1,14 +1,12 @@
 import { defineConfig } from 'vite'
 import { resolve } from 'path'
 
-// https://vite.dev/config/
 export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
       name: 'CesiumHooks',
-      fileName: 'cesium-hooks',
-      formats: ['es', 'umd']
+      fileName: 'cesium-hooks'
     },
     rollupOptions: {
       external: ['react', 'cesium'],
@@ -20,4 +18,4 @@ export default defineConfig({
       }
     }
   }
-})
+}) 

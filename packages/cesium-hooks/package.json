@@ -1,0 +1,23 @@
+{
+  "name": "cesium-hooks",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "./dist/cesium-hooks.umd.js",
+  "module": "./dist/cesium-hooks.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc && vite build"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "cesium": "^1.0.0"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0",
+    "typescript": "^5.0.0",
+    "@types/react": "^18.0.0"
+  }
+} 
