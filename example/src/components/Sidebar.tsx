@@ -1,55 +1,114 @@
-import { Link } from "react-router-dom"
-import { Globe2, Route, Map, Navigation, Mountain, Layers } from "lucide-react"
+import {
+  Sidebar as ShadcnSidebar,
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+} from "@/components/ui/sidebar"
+import { Link, useLocation } from "react-router-dom"
+import { Globe2, Route, Map, Navigation, Mountain, Layers, Sun, Moon, Compass, Eye } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 const menuItems = [
   {
-    title: "基础地图",
-    icon: <Globe2 className="h-4 w-4" />,
-    href: "/"
+    groupLabel: "基础功能",
+    items: [
+      {
+        title: "默认地图",
+        href: "/basic/default",
+        icon: Map
+      },
+      {
+        title: "天空盒",
+        href: "/basic/skybox",
+        icon: Sun
+      },
+      {
+        title: "大气效果",
+        href: "/basic/atmosphere",
+        icon: Moon
+      },
+      {
+        title: "相机控制",
+        href: "/basic/camera",
+        icon: Eye
+      },
+      {
+        title: "性能优化",
+        href: "/basic/performance",
+        icon: Compass
+      }
+    ]
   },
   {
-    title: "轨迹追踪",
-    icon: <Route className="h-4 w-4" />,
-    href: "/tracking"
-  },
-  {
-    title: "地形加载",
-    icon: <Mountain className="h-4 w-4" />,
-    href: "/terrain"
-  },
-  {
-    title: "图层控制",
-    icon: <Layers className="h-4 w-4" />,
-    href: "/layers"
-  },
-  {
-    title: "地图控件",
-    icon: <Navigation className="h-4 w-4" />,
-    href: "/controls"
-  },
-  {
-    title: "矢量标绘",
-    icon: <Map className="h-4 w-4" />,
-    href: "/drawing"
+    groupLabel: "进阶功能",
+    items: [
+      {
+        title: "轨迹追踪",
+        href: "/tracking",
+        icon: Route
+      },
+      {
+        title: "地形加载",
+        href: "/terrain",
+        icon: Mountain
+      },
+      {
+        title: "图层控制",
+        href: "/layers",
+        icon: Layers
+      },
+      {
+        title: "地图控件",
+        href: "/controls",
+        icon: Navigation
+      },
+      {
+        title: "矢量标绘",
+        href: "/drawing",
+        icon: Globe2
+      }
+    ]
   }
 ]
 
 export function Sidebar() {
+  const location = useLocation()
+
   return (
-    <div className="w-64 border-r bg-sidebar p-4">
-      <div className="mb-4 text-lg font-semibold">Cesium Hooks</div>
-      <nav className="space-y-2">
-        {menuItems.map((item) => (
-          <Link
-            key={item.href}
-            to={item.href}
-            className="flex items-center gap-3 rounded-lg px-3 py-2 text-sidebar-foreground transition-all hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
-          >
-            {item.icon}
-            {item.title}
-          </Link>
+    <ShadcnSidebar className="w-64 border-r p-4">
+      <SidebarContent>
+        <div className="px-4 py-4">
+          <h1 className="text-lg font-semibold">Cesium Hooks</h1>
+        </div>
+        {menuItems.map((group) => (
+          <SidebarGroup key={group.groupLabel}>
+            <SidebarGroupLabel>{group.groupLabel}</SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                {group.items.map((item) => (
+                  <SidebarMenuItem key={item.href}>
+                    <SidebarMenuButton
+                      asChild
+                      className={cn(
+                        location.pathname === item.href && "bg-accent"
+                      )}
+                    >
+                      <Link to={item.href} className="flex items-center gap-3">
+                        <item.icon className="h-4 w-4" />
+                        <span>{item.title}</span>
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
         ))}
-      </nav>
-    </div>
+      </SidebarContent>
+    </ShadcnSidebar>
   )
-} 
+}   

@@ -1,6 +1,13 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { Layout } from "./components/Layout"
-import { BasicMap, Tracking, Terrain, Layers, Controls, Drawing } from "./pages"
+import { 
+  DefaultMap, 
+  SkyboxMap, 
+  AtmosphereMap, 
+  CameraMap, 
+  PerformanceMap 
+} from "./pages/basic"
+import { Tracking, Terrain, Layers, Controls, Drawing } from "./pages"
 
 export default function App() {
   return (
@@ -13,7 +20,14 @@ export default function App() {
     >
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<BasicMap />} />
+          <Route index element={<DefaultMap />} />
+          <Route path="basic">
+            <Route path="default" element={<DefaultMap />} />
+            <Route path="skybox" element={<SkyboxMap />} />
+            <Route path="atmosphere" element={<AtmosphereMap />} />
+            <Route path="camera" element={<CameraMap />} />
+            <Route path="performance" element={<PerformanceMap />} />
+          </Route>
           <Route path="tracking" element={<Tracking />} />
           <Route path="terrain" element={<Terrain />} />
           <Route path="layers" element={<Layers />} />
