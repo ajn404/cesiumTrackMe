@@ -4,7 +4,7 @@
 
 ![cesium](./assets/ai_cesium.png)
 
-基于 Cesium + React 的轨迹追踪项目，采用 monorepo 架构。
+基于 Cesium + React 的cesium toolkit项目，采用 monorepo 架构。
 
 ## 技术栈
 
