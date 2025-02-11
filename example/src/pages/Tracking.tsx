@@ -1,11 +1,12 @@
 import { useCesium } from 'cesium-hooks'
 import { useTracking } from 'cesium-hooks'
+import { useMemo, memo } from 'react'
 
 import { Color } from 'cesium'
+import { MODELS } from '@/constants/models';
 
 export const generateTrajectory = (centerLng = -117.16, centerLat = 32.71) => {
   const points = [];
-  // 初始时间的时间戳（2024-01-01 00:00:00 UTC）
   const baseTime = new Date("2024-01-01T00:00:00Z").getTime();
   for (let t = 0; t < 200; t++) {
     const angle = t * 0.1;
@@ -34,17 +35,28 @@ export const generateTrajectory = (centerLng = -117.16, centerLat = 32.71) => {
   return points;
 };
 
-export function Tracking() {
+export const Tracking = memo(function Tracking() {
   const { cesiumContainerRef, viewer } = useCesium(import.meta.env.VITE_ION_TOKEN)
-
-  const trajectoryPoints = generateTrajectory(116.5389, 39.8209)
+  
+  // 使用 useMemo 来缓存轨迹点数据
+  const trajectoryPoints = useMemo(() => generateTrajectory(116.5389, 39.8209), [])
 
   const { isPlaying, currentPosition, controls } = useTracking(viewer, {
-    trajectoryPoints,
+    trajectoryPoints, // 直接传入缓存的数据，而不是函数调用
     pathColor: Color.YELLOW,
     clockMultiplier: 1,
-    modelUrl:'https://ajn404.github.io/assets/models/gltf/Cesium_Man.glb'
+    modelUrl: MODELS.CESIUM_MAN.url
   })
+
+  const positionDisplay = useMemo(() => {
+    if (!currentPosition) return null;
+    return (
+      <div className="mt-2">
+        经度: {currentPosition.lng.toFixed(6)}
+        纬度: {currentPosition.lat.toFixed(6)}
+      </div>
+    );
+  }, [currentPosition?.lng.toFixed(6), currentPosition?.lat.toFixed(6)]);
 
   return (
     <div className="h-full w-full relative">
@@ -54,14 +66,8 @@ export function Tracking() {
           {isPlaying ? "⏸️ 暂停" : "▶️ 播放"}
         </button>
         <button onClick={controls.reset}>⏹️ 重置</button>
-
-        {currentPosition && (
-          <div className="mt-2">
-            经度: {currentPosition.lng.toFixed(6)}
-            纬度: {currentPosition.lat.toFixed(6)}
-          </div>
-        )}
+        {positionDisplay}
       </div>
     </div>
   )
-}
+})

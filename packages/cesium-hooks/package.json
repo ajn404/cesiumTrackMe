@@ -1,6 +1,6 @@
 {
   "name": "cesium-hooks",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "React hooks for CesiumJS integration",
   "author": "ajn404",
   "license": "MIT",
@@ -19,13 +19,18 @@
   "scripts": {
     "build": "tsc && vite build"
   },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=7.0.0"
+  },
   "peerDependencies": {
-    "react": "^18.0.0",
-    "cesium": "^1.0.0"
+    "cesium": "^1.0.0",
+    "react": "^18.0.0"
   },
   "devDependencies": {
-    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0",
     "@types/react": "^18.0.0",
-    "@types/node": "^20.0.0"
+    "typescript": "^5.0.0",
+    "vite-plugin-dts": "^4.5.0"
   }
-} 
+}
