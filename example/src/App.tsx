@@ -8,6 +8,7 @@ import {
   PerformanceMap 
 } from "./pages/basic"
 import { Tracking, Terrain, Layers, Controls, Drawing } from "./pages"
+import { Documentation } from './pages/Documentation'
 
 export default function App() {
   return (
@@ -33,6 +34,7 @@ export default function App() {
           <Route path="layers" element={<Layers />} />
           <Route path="controls" element={<Controls />} />
           <Route path="drawing" element={<Drawing />} />
+          <Route path="docs/:page" element={<Documentation />} />
         </Route>
       </Routes>
     </BrowserRouter>

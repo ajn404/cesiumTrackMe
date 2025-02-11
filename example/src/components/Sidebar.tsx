@@ -9,7 +9,7 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 import { Link, useLocation } from "react-router-dom"
-import { Globe2, Route, Map, Navigation, Mountain, Layers, Sun, Moon, Compass, Eye } from "lucide-react"
+import { Globe2, Route, Map, Navigation, Mountain, Layers, Sun, Moon, Compass, Eye, FileText } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const menuItems = [
@@ -19,7 +19,8 @@ const menuItems = [
       {
         title: "默认地图",
         href: "/basic/default",
-        icon: Map
+        icon: Map,
+        docs: "default-map"
       },
       {
         title: "天空盒",
@@ -100,6 +101,19 @@ export function Sidebar() {
                       <Link to={item.href} className="flex items-center gap-3">
                         <item.icon className="h-4 w-4" />
                         <span>{item.title}</span>
+                        {item.docs && (
+                          <button 
+                            onClick={(e) => {
+                              e.preventDefault()
+                              e.stopPropagation()
+                              window.open(`${import.meta.env.BASE_URL}docs/${item.docs}`, '_parent')
+                            }}
+                            className="ml-auto hover:text-primary"
+                            title="查看文档"
+                          >
+                            <FileText className="h-4 w-4" />
+                          </button>
+                        )}
                       </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
