@@ -5,7 +5,8 @@ export function PerformanceMap() {
     requestRenderMode: true,
     maximumRenderTimeChange: 1000,
     targetFrameRate: 30,
-    orderIndependentTranslucency: false
+    orderIndependentTranslucency: false,
+    fullscreenButton:true,
   })
 
   return (
