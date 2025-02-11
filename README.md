@@ -77,7 +77,7 @@ pnpm build
 
 ## 在线演示
 
-访问 [在线示例](https://ajn404.github.io/cesium/) 查看功能演示。
+访问 [在线示例](https://ajn404.github.io/cesiumTrackMe/) 查看功能演示。
 
 ## 备注
 

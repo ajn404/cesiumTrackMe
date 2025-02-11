@@ -13,7 +13,7 @@ import { Documentation } from './pages/Documentation'
 export default function App() {
   return (
     <BrowserRouter 
-      basename="/cesium"
+      basename="/cesiumTrackMe"
       future={{ 
         v7_startTransition: true,
         v7_relativeSplatPath: true 

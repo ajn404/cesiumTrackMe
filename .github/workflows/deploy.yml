@@ -35,7 +35,7 @@ jobs:
           echo "VITE_ION_TOKEN=${{ secrets.CESIUM_ION_TOKEN }}" > .env
           pnpm build
         env:
-          VITE_BASE_URL: '/cesium'
+          VITE_BASE_URL: '/cesiumTrackMe'
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3

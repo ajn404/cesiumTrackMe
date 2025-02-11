@@ -6,7 +6,7 @@ import path from "path"
 
 export default defineConfig({
   plugins: [react(), cesium()],
-  base: '/cesium/',
+  base: '/cesiumTrackMe/',
   css: {
     postcss: {
       plugins: [

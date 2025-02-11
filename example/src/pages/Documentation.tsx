@@ -40,7 +40,7 @@ export function Documentation() {
             repository: 'ajn404/cesiumTrackMe',
             buildUrl(values) {
               return values.type === 'mention'
-                ? `http://ajn404.github.io/cesium/${values.user}/`
+                ? `http://ajn404.github.io/cesiumTrackMe/${values.user}/`
                 : defaultBuildUrl(values)
             }
           }]
