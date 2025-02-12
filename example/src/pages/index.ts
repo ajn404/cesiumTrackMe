@@ -1,6 +1,2 @@
-export { BasicMap } from './BasicMap'
 export { Tracking } from './Tracking'
-export { Terrain } from './Terrain'
-export { Layers } from './Layers'
-export { Controls } from './Controls'
-export { Drawing } from './Drawing' 
+export * from './basic'

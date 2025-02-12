@@ -5,9 +5,9 @@ import {
   SkyboxMap, 
   AtmosphereMap, 
   CameraMap, 
-  PerformanceMap 
-} from "./pages/basic"
-import { Tracking, Terrain, Layers, Controls, Drawing } from "./pages"
+  PerformanceMap,
+  Tracking
+} from "./pages"
 import { Documentation } from './pages/Documentation'
 import { ThemeProvider } from "@/components/theme-provider"
 
@@ -32,10 +32,6 @@ export default function App() {
               <Route path="performance" element={<PerformanceMap />} />
             </Route>
             <Route path="tracking" element={<Tracking />} />
-            <Route path="terrain" element={<Terrain />} />
-            <Route path="layers" element={<Layers />} />
-            <Route path="controls" element={<Controls />} />
-            <Route path="drawing" element={<Drawing />} />
             <Route path="/:page" element={<Documentation />} />
           </Route>
         </Routes>
