@@ -34,7 +34,7 @@ export default function App() {
           <Route path="layers" element={<Layers />} />
           <Route path="controls" element={<Controls />} />
           <Route path="drawing" element={<Drawing />} />
-          <Route path="docs/:page" element={<Documentation />} />
+          <Route path="/:page" element={<Documentation />} />
         </Route>
       </Routes>
     </BrowserRouter>
