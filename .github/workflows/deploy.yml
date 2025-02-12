@@ -34,6 +34,7 @@ jobs:
           cd example
           echo "VITE_ION_TOKEN=${{ secrets.CESIUM_ION_TOKEN }}" > .env
           pnpm build
+          pnpm postbuild
         env:
           VITE_BASE_URL: '/cesiumTrackMe'
 

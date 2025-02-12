@@ -6,8 +6,10 @@ import tailwindcss from 'tailwindcss'
 import path from "path"
 
 export default defineConfig({
-  plugins: [react(), cesium()],
-  base: './',
+  plugins: [react(), cesium({
+    cesiumBaseUrl:''
+  })],
+  base: '/cesiumTrackMe',
   css: {
     postcss: {
       plugins: [

@@ -43,7 +43,7 @@ export function Sidebar() {
                             onClick={(e) => {
                               e.preventDefault()
                               e.stopPropagation()
-                              window.open(`/cesiumTrackMe/docs/${item.docs}`, '_parent')
+                              window.open(`${import.meta.env.BASE_URL}/docs/${item.docs}`, '_parent')
                             }}
                             className="ml-auto hover:text-primary"
                             title="查看文档"
