@@ -9,13 +9,15 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 import { Link, useLocation, useNavigate } from "react-router-dom"
-import { FileText } from "lucide-react"
+import { FileText, Sun, Moon } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { menuItems } from "@/constants/menu"
+import { useTheme } from "@/components/theme-provider"
 
 export function Sidebar() {
   const location = useLocation()
   const navigate = useNavigate()
+  const { theme, setTheme } = useTheme()
 
   return (
     <ShadcnSidebar className="w-64 border-r p-4">
@@ -61,6 +63,17 @@ export function Sidebar() {
           </SidebarGroup>
         ))}
         <div className="mt-auto px-4 py-4 flex gap-4">
+          <button
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            className="hover:text-primary"
+            title="切换主题"
+          >
+            {theme === "dark" ? (
+              <Sun className="h-6 w-6" />
+            ) : (
+              <Moon className="h-6 w-6" />
+            )}
+          </button>
           <a 
             href="https://github.com/ajn404/cesiumTrackMe.git" 
             target="_blank" 
