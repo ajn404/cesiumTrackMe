@@ -1,6 +1,5 @@
 import { Map, Sun, Moon, Eye, Compass, Route } from "lucide-react"
 import { DefaultMap, SkyboxMap, AtmosphereMap, CameraMap, PerformanceMap, Tracking, Documentation, TerrainMap } from "@/pages"
-import { title } from "process"
 
 export const routes = [
     {
@@ -11,7 +10,7 @@ export const routes = [
                 path: "/basic/default",
                 element: DefaultMap,
                 icon: Map,
-                docs: "default-map"
+                docs: "default-map",
             },
             {
                 title: "天空盒",
