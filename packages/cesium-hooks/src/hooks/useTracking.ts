@@ -11,7 +11,7 @@ import {
   Color,
   PathGraphics,
   Cartographic,
-  Math,
+  Math as CesiumMath,
   Viewer,
   Clock
 } from "cesium"
@@ -119,11 +119,16 @@ export function useTracking(viewer: React.MutableRefObject<Viewer | undefined>, 
       const cartesian = positionProperty.getValue(currentTime)
       if (cartesian) {
         const cartographic = Cartographic.fromCartesian(cartesian)
-        setCurrentPosition({
-          lng: Math.toDegrees(cartographic.longitude),
-          lat: Math.toDegrees(cartographic.latitude),
+        const newLng = CesiumMath.toDegrees(cartographic.longitude)
+        const newLat = CesiumMath.toDegrees(cartographic.latitude)
+        // 直接更新位置，不再检查阈值
+        setCurrentPosition(_ => {
+          return {
+            lng: newLng,
+            lat: newLat,
+          }
         })
-      }
+      } 
     }
 
     viewer.current.clock.onTick.addEventListener(onClockTick)
@@ -134,8 +139,7 @@ export function useTracking(viewer: React.MutableRefObject<Viewer | undefined>, 
         viewer.current.clock.onTick.removeEventListener(onClockTick)
       }
     }
-
-  }, [viewer.current, , ])
+  }, [viewer, currentPosition])
 
   // 初始化场景
   useEffect(() => {

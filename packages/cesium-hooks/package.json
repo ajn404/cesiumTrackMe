@@ -1,6 +1,6 @@
 {
   "name": "cesium-hooks",
-  "version": "0.0.5",
+  "version": "0.0.51",
   "description": "React hooks for CesiumJS integration",
   "author": "ajn404",
   "license": "MIT",
@@ -16,6 +16,13 @@
   "files": [
     "dist"
   ],
+  "keywords": [
+    "cesium",
+    "react",
+    "hooks",
+    "3d",
+    "gis"
+  ],
   "scripts": {
     "build": "tsc && vite build"
   },
@@ -24,7 +31,7 @@
     "npm": ">=7.0.0"
   },
   "peerDependencies": {
-    "cesium": "^1.0.0",
+    "cesium": "^1.125.0",
     "react": "^18.0.0"
   },
   "devDependencies": {

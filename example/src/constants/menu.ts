@@ -40,26 +40,26 @@ export const menuItems = [
         href: "/tracking",
         icon: Route
       },
-      {
-        title: "地形加载",
-        href: "/terrain",
-        icon: Mountain
-      },
-      {
-        title: "图层控制",
-        href: "/layers",
-        icon: Layers
-      },
-      {
-        title: "地图控件",
-        href: "/controls",
-        icon: Navigation
-      },
-      {
-        title: "矢量标绘",
-        href: "/drawing",
-        icon: Globe2
-      }
+      // {
+      //   title: "地形加载",
+      //   href: "/terrain",
+      //   icon: Mountain
+      // },
+      // {
+      //   title: "图层控制",
+      //   href: "/layers",
+      //   icon: Layers
+      // },
+      // {
+      //   title: "地图控件",
+      //   href: "/controls",
+      //   icon: Navigation
+      // },
+      // {
+      //   title: "矢量标绘",
+      //   href: "/drawing",
+      //   icon: Globe2
+      // }
     ]
   }
 ] 

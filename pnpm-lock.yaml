@@ -121,7 +121,7 @@ importers:
   packages/cesium-hooks:
     dependencies:
       cesium:
-        specifier: ^1.0.0
+        specifier: ^1.125.0
         version: 1.125.0
       react:
         specifier: ^18.0.0
