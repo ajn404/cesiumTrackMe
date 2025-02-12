@@ -1,7 +1,7 @@
 const fs = require('fs-extra');
 const path = require('path');
 
-const sourceDir = path.resolve('dist/cesiumTrackMe');
+const sourceDir = path.resolve('dist/cesiumTrackMe/cesium');
 const targetDir = path.resolve('dist/cesium');
 
 if (fs.existsSync(sourceDir)) {
