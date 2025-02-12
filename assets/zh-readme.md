@@ -84,6 +84,12 @@ pnpm build
 > cursor用了半天写的cesium toolkit
 > cursor does it in half day
 
+## 规划
+
+- 拓展融合cesium和babylon/three加强cpu功能
+- 实现一些shder
+- 总结cesium知识，做有效积累
+
 ## License
 
 MIT

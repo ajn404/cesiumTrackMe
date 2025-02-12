@@ -8,7 +8,7 @@ export default function App() {
     <ThemeProvider>
       <BrowserRouter basename="/cesiumTrackMe">
         <Routes>
-          <Route path="/" element={<Layout />}>
+          <Route path="/" element={<Layout />}> 
             {routes.map((group, index) =>
               group.items ? (
                 group.items.map((item) => (
