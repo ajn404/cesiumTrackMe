@@ -15,7 +15,7 @@ export function Documentation() {
 
   useEffect(() => {
     // 直接使用 fetch 加载 markdown 文件
-    fetch(`${import.meta.env.BASE_URL}/docs/${page}.md`)
+    fetch(`/${page}.md`)
       .then(res => {
         if (!res.ok) {
           throw new Error('文档未找到')

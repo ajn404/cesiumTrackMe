@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import cesium from 'vite-plugin-cesium'
 import autoprefixer from 'autoprefixer';
+import tailwindcss from 'tailwindcss'
 import path from "path"
 
 export default defineConfig({
@@ -11,7 +12,7 @@ export default defineConfig({
     postcss: {
       plugins: [
         autoprefixer(),
-        require('tailwindcss'),
+        tailwindcss()
       ],
     },
   },
@@ -19,10 +20,5 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
-  },
-  server: {
-    fs: {
-      allow: ['..']
-    }
   },
 }) 
