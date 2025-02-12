@@ -34,9 +34,13 @@
     "postcss": "^8.4.35",
     "rehype-highlight": "^7.0.2",
     "rehype-katex": "^7.0.1",
+    "rehype-slug": "^6.0.0",
     "remark-github": "^12.0.0",
     "remark-math": "^6.0.0",
+    "remark-parse": "^11.0.0",
+    "remark-rehype": "^11.1.1",
     "tailwindcss": "^3.4.1",
+    "unified": "^11.0.5",
     "vite-plugin-cesium": "^1.2.23"
   }
 }
