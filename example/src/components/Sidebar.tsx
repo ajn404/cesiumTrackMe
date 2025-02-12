@@ -8,13 +8,14 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { Link, useLocation } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import { FileText } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { menuItems } from "@/constants/menu"
 
 export function Sidebar() {
   const location = useLocation()
+  const navigate = useNavigate()
 
   return (
     <ShadcnSidebar className="w-64 border-r p-4">
@@ -39,11 +40,11 @@ export function Sidebar() {
                         <item.icon className="h-4 w-4" />
                         <span>{item.title}</span>
                         {item.docs && (
-                          <button 
+                          <button
                             onClick={(e) => {
                               e.preventDefault()
                               e.stopPropagation()
-                              window.open(`${import.meta.env.BASE_URL}/${item.docs}`, '_parent')
+                              navigate(`/${item.docs}`)
                             }}
                             className="ml-auto hover:text-primary"
                             title="查看文档"
