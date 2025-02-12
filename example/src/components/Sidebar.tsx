@@ -8,7 +8,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { Link, useLocation, useNavigate } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router"
 import { FileText, Sun, Moon } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { routes } from "@/constants/routes"

@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { BrowserRouter, Routes, Route } from "react-router"
 import { Layout } from "./components/Layout"
 import { ThemeProvider } from "@/components/theme-provider"
 import { routes } from "@/constants/routes"
