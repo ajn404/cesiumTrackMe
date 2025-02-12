@@ -1,88 +1,90 @@
 # Cesium Track Me
 
-> a template or an  useful cesium components
+> A template or useful Cesium components
+
+[中文文档链接](./assets/zh-readme.md)
 
 ![cesium](./assets/ai_cesium.png)
 
-基于 Cesium + React 的cesium toolkit项目，采用 monorepo 架构。
+A Cesium + React toolkit project based on monorepo architecture.
 
-## 技术栈
+## Tech Stack
 
-- 包管理：pnpm + workspace
-- 构建工具：Vite
-- 框架：React 18
-- 地图引擎：CesiumJS
-- UI 组件：shadcn/ui
-- 样式：TailwindCSS
-- 路由：React Router v6
-- 类型检查：TypeScript
+- Package Manager: pnpm + workspace
+- Build Tool: Vite
+- Framework: React 18
+- Map Engine: CesiumJS
+- UI Components: shadcn/ui
+- Styling: TailwindCSS
+- Routing: React Router v6
+- Type Checking: TypeScript
 
-## 项目结构
+## Project Structure
 
 ```bash
 .
 ├── packages/
-│   └── cesium-hooks/          # Cesium React Hooks 库
+│   └── cesium-hooks/          # Cesium React Hooks Library
 │       ├── src/
-│       │   ├── hooks/         # 各种 Hooks 实现
-│       │   └── index.ts       # 入口文件
+│       │   ├── hooks/         # Various Hooks Implementations
+│       │   └── index.ts       # Entry File
 │       ├── package.json
 │       └── README.md
 │
-├── example/                   # 示例应用
+├── example/                   # Example Application
 │   ├── src/
-│   │   ├── components/       # 通用组件
-│   │   ├── pages/           # 页面组件
-│   │   ├── hooks/           # 自定义 Hooks
-│   │   └── lib/             # 工具函数
+│   │   ├── components/       # Common Components
+│   │   ├── pages/           # Page Components
+│   │   ├── hooks/           # Custom Hooks
+│   │   └── lib/             # Utility Functions
 │   ├── package.json
 │   └── vite.config.ts
 │
-├── pnpm-workspace.yaml       # 工作空间配置
+├── pnpm-workspace.yaml       # Workspace Configuration
 └── package.json
 ```
 
-## 核心功能
+## Core Features
 
-1. cesium-hooks 包
-   - useCesium: 地图初始化
-   - useCamera: 相机控制
-   - useTracking: 轨迹追踪
+1. cesium-hooks Package
+   - useCesium: Map Initialization
+   - useCamera: Camera Control
+   - useTracking: Trajectory Tracking
 
-2. 示例应用
-   - 基础地图展示
-   - 轨迹追踪
-   - 地形加载
-   - 图层控制
-   - 地图控件
-   - 矢量标绘
+2. Example Application
+   - Basic Map Display
+   - Trajectory Tracking
+   - Terrain Loading
+   - Layer Control
+   - Map Controls
+   - Vector Drawing
 
-## 开发
+## Development
 
 ```bash
-# 安装依赖
+# Install Dependencies
 pnpm install
 
-# 开发示例应用
+# Develop Example Application
 pnpm dev
 
-# 构建 hooks 库
+# Build Hooks Library
 pnpm build
 ```
 
-## 自动化部署
+## Automated Deployment
 
-- GitHub Actions 自动部署示例应用到 GitHub Pages
-- 发布新版本时自动发布 npm 包
+- GitHub Actions for Automatic Deployment of Example Application to GitHub Pages
+- Automatic npm Package Publishing on New Version Release
 
-## 在线演示
+## Online Demo
 
-访问 [在线示例](https://ajn404.github.io/cesiumTrackMe/) 查看功能演示。
+Visit [Online Example](https://ajn404.github.io/cesiumTrackMe/) to view the feature demo.
 
-## 备注
+## Notes
 
-> cursor用了半天写的cesium toolkit
-> cursor does it in half day
+> Cursor wrote this Cesium toolkit in half a day
+> Cursor does it in half day
 
 ## License
 

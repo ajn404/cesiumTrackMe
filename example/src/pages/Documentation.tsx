@@ -172,8 +172,8 @@ export function Documentation() {
         </div>
       </div>
       <div className="w-1/4 pl-8 sticky top-0 h-screen overflow-auto">
-        <div className="p-4 bg-gray-50 rounded-lg">
-          <h2 className="text-lg font-bold mb-4">目录</h2>
+        <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+          <h2 className="text-lg font-bold mb-4 dark:text-gray-200">目录</h2>
           <ReactMarkdown
             remarkPlugins={[remarkToc]}
             components={{
@@ -184,7 +184,7 @@ export function Documentation() {
                 const level = node.position?.start.column || 1
                 return (
                   <li 
-                    className={`pl-${level * 2}`}
+                    className={`pl-${level * 2} dark:text-gray-300`}
                     style={{ paddingLeft: `${level * 0.5}rem` }}
                     {...props}
                   >
@@ -201,8 +201,8 @@ export function Documentation() {
                       e.preventDefault()
                       handleTocClick(id)
                     }}
-                    className={`text-gray-600 hover:text-gray-900 ${
-                      activeId === id ? 'font-medium text-blue-600' : ''
+                    className={`text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100 ${
+                      activeId === id ? 'font-medium text-blue-600 dark:text-blue-400' : ''
                     }`}
                     {...props}
                   >
