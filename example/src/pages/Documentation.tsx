@@ -19,41 +19,35 @@ export function Documentation() {
 
   // 处理目录点击
   const handleTocClick = (id: string) => {
-    setActiveId(id)
-    const element = document.getElementById(id)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    const decodedId = decodeURIComponent(id) // 解码中文
+    setActiveId(decodedId)
+    // 处理带数字后缀的ID
+    const baseId = decodedId.replace(/-\d+$/, '')
+    const elements = document.querySelectorAll(`[id^="${baseId}"]`)
+    
+    // 找到与点击ID完全匹配的元素
+    const targetElement = Array.from(elements).find(el => el.id === decodedId)
+    
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
   }
-
-  // 处理页面滚动
-  useEffect(() => {
-    const headings = Array.from(document.querySelectorAll('h1, h2, h3'))
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            setActiveId(entry.target.id)
-          }
-        })
-      },
-      { rootMargin: '-50% 0px -50% 0px', threshold: 0.5 }
-    )
-
-    headings.forEach(heading => observer.observe(heading))
-
-    return () => headings.forEach(heading => observer.unobserve(heading))
-  }, [content])
 
   // 生成目录
   useEffect(() => {
     if (content) {
       const headings = content.match(/#{1,3} .+/g) || []
+      const headingCounts: { [key: string]: number } = {}
       const tocMarkdown = headings.map(heading => {
         const level = heading.match(/^#+/)?.[0].length || 1
         const title = heading.replace(/^#+\s*/, '')
-        const id = title.toLowerCase().replace(/\s+/g, '-')
-        return `${'  '.repeat(level - 1)}- [${title}](#${id})`
+        const baseId = title.toLowerCase().replace(/\s+/g, '-')
+        
+        // 为重复标题添加计数后缀
+        headingCounts[baseId] = (headingCounts[baseId] || 0) + 1
+        const uniqueId = headingCounts[baseId] > 1 ? `${baseId}-${headingCounts[baseId] - 1}` : baseId
+        
+        return `${'  '.repeat(level - 1)}- [${title}](#${uniqueId})`
       }).join('\n')
       setToc(tocMarkdown)
     }
@@ -135,6 +129,13 @@ export function Documentation() {
               h3({ node, children, ...props }) {
                 return (
                   <h3 className="text-xl font-semibold mt-6 mb-3" {...props}>
+                    {children}
+                  </h3>
+                )
+              },
+              h4({ node, children, ...props }) {
+                return (
+                  <h3 className="text-xs font-semibold mt-6 mb-3" {...props}>
                     {children}
                   </h3>
                 )
