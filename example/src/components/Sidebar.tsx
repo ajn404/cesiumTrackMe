@@ -11,7 +11,7 @@ import {
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import { FileText, Sun, Moon } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { menuItems } from "@/constants/menu"
+import { routes } from "@/constants/routes"
 import { useTheme } from "@/components/theme-provider"
 
 export function Sidebar() {
@@ -25,42 +25,44 @@ export function Sidebar() {
         <div className="px-4 py-4">
           <h1 className="text-lg font-semibold">Cesium Hooks</h1>
         </div>
-        {menuItems.map((group) => (
-          <SidebarGroup key={group.groupLabel}>
-            <SidebarGroupLabel>{group.groupLabel}</SidebarGroupLabel>
-            <SidebarGroupContent>
-              <SidebarMenu>
-                {group.items.map((item) => (
-                  <SidebarMenuItem key={item.href}>
-                    <SidebarMenuButton
-                      asChild
-                      className={cn(
-                        location.pathname === item.href && "bg-accent"
-                      )}
-                    >
-                      <Link to={item.href} className="flex items-center gap-3">
-                        <item.icon className="h-4 w-4" />
-                        <span>{item.title}</span>
-                        {item.docs && (
-                          <button
-                            onClick={(e) => {
-                              e.preventDefault()
-                              e.stopPropagation()
-                              navigate(`/${item.docs}`)
-                            }}
-                            className="ml-auto hover:text-primary"
-                            title="查看文档"
-                          >
-                            <FileText className="h-4 w-4" />
-                          </button>
+        {routes.map((group) => (
+          group.items && (
+            <SidebarGroup key={group.groupLabel}>
+              <SidebarGroupLabel>{group.groupLabel}</SidebarGroupLabel>
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  {group.items.map((item) => (
+                    <SidebarMenuItem key={item.path}>
+                      <SidebarMenuButton
+                        asChild
+                        className={cn(
+                          location.pathname === item.path && "bg-accent"
                         )}
-                      </Link>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                ))}
-              </SidebarMenu>
-            </SidebarGroupContent>
-          </SidebarGroup>
+                      >
+                        <Link to={item.path} className="flex items-center gap-3">
+                          <item.icon className="h-4 w-4" />
+                          <span>{item.title}</span>
+                          {item.docs && (
+                            <button
+                              onClick={(e) => {
+                                e.preventDefault()
+                                e.stopPropagation()
+                                navigate(`/${item.docs}`)
+                              }}
+                              className="ml-auto hover:text-primary"
+                              title="查看文档"
+                            >
+                              <FileText className="h-4 w-4" />
+                            </button>
+                          )}
+                        </Link>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  ))}
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </SidebarGroup>
+          )
         ))}
         <div className="mt-auto px-4 py-4 flex gap-4">
           <button
@@ -100,4 +102,4 @@ export function Sidebar() {
       </SidebarContent>
     </ShadcnSidebar>
   )
-}   
+}

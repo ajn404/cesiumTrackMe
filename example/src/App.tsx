@@ -1,38 +1,23 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { Layout } from "./components/Layout"
-import { 
-  DefaultMap, 
-  SkyboxMap, 
-  AtmosphereMap, 
-  CameraMap, 
-  PerformanceMap,
-  Tracking
-} from "./pages"
-import { Documentation } from './pages/Documentation'
 import { ThemeProvider } from "@/components/theme-provider"
+import { routes } from "@/constants/routes"
 
 export default function App() {
   return (
     <ThemeProvider>
-      <BrowserRouter 
-        basename="/cesiumTrackMe"
-        future={{ 
-          v7_startTransition: true,
-          v7_relativeSplatPath: true 
-        }}
-      >
+      <BrowserRouter basename="/cesiumTrackMe">
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index element={<DefaultMap />} />
-            <Route path="basic">
-              <Route path="default" element={<DefaultMap />} />
-              <Route path="skybox" element={<SkyboxMap />} />
-              <Route path="atmosphere" element={<AtmosphereMap />} />
-              <Route path="camera" element={<CameraMap />} />
-              <Route path="performance" element={<PerformanceMap />} />
-            </Route>
-            <Route path="tracking" element={<Tracking />} />
-            <Route path="/:page" element={<Documentation />} />
+            {routes.map((group, index) =>
+              group.items ? (
+                group.items.map((item) => (
+                  <Route key={item.path} path={item.path} element={<item.element />} />
+                ))
+              ) : (
+                <Route key={group.path} path={group.path} element={<group.element />} />
+              )
+            )}
           </Route>
         </Routes>
       </BrowserRouter>
