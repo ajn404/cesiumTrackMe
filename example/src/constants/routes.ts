@@ -28,6 +28,7 @@ export const routes = [
                 title: "相机控制",
                 path: "/basic/camera",
                 element: CameraMap,
+                docs:'use-camera',
                 icon: Eye
             },
             {

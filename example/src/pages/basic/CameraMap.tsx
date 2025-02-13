@@ -1,7 +1,5 @@
 import { useCamera, useCesium } from 'cesium-hooks'
 import { Button } from '@/components/ui/button'
-import { useEffect, useRef } from 'react'
-import { Viewer } from "cesium";
 
 export function CameraMap() {
   const { cesiumContainerRef, viewer, isReady } = useCesium(import.meta.env.VITE_ION_TOKEN, {
@@ -15,34 +13,9 @@ export function CameraMap() {
     },
     enableDrag: false
   })
-  // const viewerRef = useRef<Viewer | undefined>(viewer);
-
-  // useEffect(() => {
-  //   viewerRef.current = viewer;
-  // }, [viewer]);
-
   let { flyTo, zoomIn, zoomOut, setView, getCurrentPosition } = useCamera({
     viewer 
   })
-
-  const handleResetView = () => {
-    if (!isReady.current) return 
-    flyTo({
-      longitude: 116.3974,
-      latitude: 39.9093,
-      height: 10000
-    })
-  }
-
-  const handleZoomIn = () => {
-    if (!isReady.current) return;
-    zoomIn();
-  }
-
-  const handleZoomOut = () => {
-    if (!isReady.current) return;
-    zoomOut();
-  }
 
   return (
     <div className="h-full w-full">
@@ -51,23 +24,46 @@ export function CameraMap() {
         <Button
           variant="outline"
           className="hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-          onClick={handleResetView}
+          onClick={() => {
+            flyTo({
+              longitude: 116.3974,
+              latitude: 39.9093,
+              height: 10000
+            })
+          }}
         >
-          useCamera
+          flyTo
         </Button>
         <Button
           variant="outline"
           className="hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-          onClick={handleZoomIn}
+          onClick={() => {
+            zoomIn()
+          }}
         >
           Zoom In
         </Button>
         <Button
           variant="outline"
           className="hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-          onClick={handleZoomOut}
+          onClick={() => {
+            zoomOut()
+          }}
         >
           Zoom Out
+        </Button>
+        <Button
+          variant="outline"
+          className="hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+          onClick={() => {
+            setView({
+              longitude: 116.5389,
+              latitude: 39.8209,
+              height:500
+            })
+          }}
+        >
+          setView
         </Button>
       </div>
     </div>

@@ -31,6 +31,7 @@ export const useCamera = ({ viewer, duration = 2 }: UseCameraProps) => {
         },
 
         zoomIn: (amount: number = 1000) => {
+            console.log(amount)
             if (!viewerRef.current) {
                 console.warn('Viewer is not initialized');
                 return;
@@ -48,6 +49,8 @@ export const useCamera = ({ viewer, duration = 2 }: UseCameraProps) => {
         },
 
         zoomOut: (amount: number = 1000) => {
+            console.log(amount)
+
             if (!viewerRef.current) {
                 console.warn('Viewer is not initialized');
                 return;
