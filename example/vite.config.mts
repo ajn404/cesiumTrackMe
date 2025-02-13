@@ -19,6 +19,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
+      "cesium-hooks": path.resolve(__dirname, "../packages/cesium-hooks/src")
     },
   },
 }) 

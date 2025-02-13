@@ -1,36 +1,27 @@
-import { useEffect } from "react";
 import { Viewer, Cartesian3 } from "cesium";
 
 interface UseCameraProps {
-    viewer: Viewer;
-    position?: { longitude: number, latitude: number, height: number };
+    viewer?: Viewer;
     duration?: number;
 }
 
-export const useCamera = ({ viewer, position, duration = 2 }: UseCameraProps) => {
-    useEffect(() => {
-        if (position) {
-            viewer.camera.flyTo({
-                destination: Cartesian3.fromDegrees(
-                    position.longitude,
-                    position.latitude,
-                    position.height
-                ),
-                duration
-            });
+export const useCamera = ({ viewer, duration = 2 }: UseCameraProps) => {
+    const flyTo = (position: { longitude: number, latitude: number, height: number }) => {
+        if (!viewer) {
+            console.warn('Viewer is not initialized');
+            return;
         }
-    }, [viewer, position, duration]);
+        viewer.camera.flyTo({
+            destination: Cartesian3.fromDegrees(
+                position.longitude,
+                position.latitude,
+                position.height
+            ),
+            duration
+        });
+    };
 
     return {
-        flyTo: (position: { longitude: number, latitude: number, height: number }) => {
-            viewer.camera.flyTo({
-                destination: Cartesian3.fromDegrees(
-                    position.longitude,
-                    position.latitude,
-                    position.height
-                ),
-                duration
-            });
-        }
+        flyTo
     };
 };

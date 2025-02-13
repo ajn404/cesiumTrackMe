@@ -192,8 +192,9 @@ export interface UseCesiumReturn {
     camera: MutableRefObject<Camera | undefined>
     isReady: MutableRefObject<boolean>
 }
-
-// 自定义 Hook，用于初始化 Cesium 和管理生命周期
+/**
+    * 自定义 Hook，用于初始化 Cesium 和管理生命周期
+    */
 export function useCesium(
     token: string,
     options: CesiumViewerOptions = {}
