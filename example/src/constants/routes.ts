@@ -45,6 +45,7 @@ export const routes = [
                 title: "轨迹追踪",
                 path: "/advanced/tracking",
                 element: Tracking,
+                docs: "advance",
                 icon: Route
             },
             {
