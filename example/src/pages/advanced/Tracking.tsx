@@ -1,20 +1,21 @@
 import { useCesium } from 'cesium-hooks'
 import { useTracking } from 'cesium-hooks'
-import { useMemo, memo } from 'react'
-
+import { useMemo } from 'react'
 import { Color } from 'cesium'
 import { MODELS } from '@/constants/models';
 import { generateTrajectory } from '@/constants/utils';
 
 
-
-export const Tracking = memo(function Tracking() {
+export const Tracking = function Tracking() {
   const { cesiumContainerRef, viewer } = useCesium(import.meta.env.VITE_ION_TOKEN, {
     targetFrameRate: 30,
   })
-  
+
   // 使用 useMemo 来缓存轨迹点数据
-  const trajectoryPoints = useMemo(() => generateTrajectory(116.5389, 39.8209), [])
+  const trajectoryPoints = useMemo(() => {
+    return generateTrajectory(116.5389, 39.8209)
+  }, [])
+
 
   const { isPlaying, currentPosition, controls } = useTracking(viewer, {
     trajectoryPoints, // 直接传入缓存的数据，而不是函数调用
@@ -25,7 +26,6 @@ export const Tracking = memo(function Tracking() {
 
   const positionDisplay = useMemo(() => {
     if (!currentPosition) return null;
-    console.log(currentPosition)
     return (
       <div className="mt-2">
         经度: {currentPosition.lng.toFixed(6)}
@@ -46,4 +46,4 @@ export const Tracking = memo(function Tracking() {
       </div>
     </div>
   )
-})
+}

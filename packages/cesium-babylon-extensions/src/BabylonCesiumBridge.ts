@@ -1,5 +1,5 @@
-import { Viewer, Cartesian3, Matrix4, Transforms, Math as CesiumMath } from 'cesium';
-import { Scene, Vector3, Matrix, ArcRotateCamera } from '@babylonjs/core';
+import { Viewer } from 'cesium';
+import { Scene, Vector3, ArcRotateCamera } from '@babylonjs/core';
 
 export class BabylonCesiumBridge {
   private cesiumViewer: Viewer;
@@ -29,10 +29,10 @@ export class BabylonCesiumBridge {
       const direction = cesiumCamera.directionWC;
       const up = cesiumCamera.upWC;
 
-      const transform = Matrix4.fromRotationTranslation(
-        Matrix4.getRotation(cesiumCamera.viewMatrix, new Matrix4()),
-        position
-      );
+      // const transform = Matrix4.fromRotationTranslation(
+      //   Matrix4.getRotation(cesiumCamera.viewMatrix, new Matrix4()),
+      //   position
+      // );
 
       const babylonPosition = new Vector3(position.x, position.y, position.z);
       const babylonDirection = new Vector3(direction.x, direction.y, direction.z);

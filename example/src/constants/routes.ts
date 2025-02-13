@@ -1,5 +1,5 @@
 import { Map, Sun, Moon, Eye, Compass, Route } from "lucide-react"
-import { DefaultMap, SkyboxMap, AtmosphereMap, CameraMap, PerformanceMap, Tracking, Documentation, TerrainMap } from "@/pages"
+import { DefaultMap, SkyboxMap, AtmosphereMap, CameraMap, PerformanceMap, Tracking, Documentation, TerrainMap, ShaderMap } from "@/pages"
 
 export const routes = [
     {
@@ -51,6 +51,12 @@ export const routes = [
                 title: "地形地图",
                 path: "/advanced/terrain",
                 element: TerrainMap,
+                icon: Route
+            },
+            {
+                title: "自定义着色器",
+                path: "/advanced/shader",
+                element: ShaderMap,
                 icon: Route
             }
         ]

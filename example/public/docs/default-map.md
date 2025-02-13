@@ -108,3 +108,14 @@ function AdvancedMap() {
 2. 视觉效果选项可能会影响渲染性能
 3. 自定义地形和影像提供器需要确保数据源可用
 4. 相机位置设置时注意单位（经度/纬度使用度，高度使用米）
+
+## 使用案例
+
+
+### 隐藏版权信息
+
+```tsx
+const { cesiumContainerRef, viewer } = useCesium(import.meta.env.VITE_ION_TOKEN, {
+      hideCredit:true
+})
+```

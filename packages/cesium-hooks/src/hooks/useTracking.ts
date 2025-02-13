@@ -139,7 +139,7 @@ export function useTracking(viewer: React.MutableRefObject<Viewer | undefined>, 
         viewer.current.clock.onTick.removeEventListener(onClockTick)
       }
     }
-  }, [viewer, currentPosition])
+  }, [viewer])
 
   // 初始化场景
   useEffect(() => {

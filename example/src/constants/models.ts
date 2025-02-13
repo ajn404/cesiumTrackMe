@@ -1,6 +1,6 @@
 export const MODELS = {
   CESIUM_MAN: {
-    url: 'https://ajn404.github.io/assets/models/gltf/Cesium_Man.glb',
+    url: `${import.meta.env.BASE_URL}/assets/Cesium_Man.glb`,
     name: 'Cesium Man',
     type: 'glb'
   }
