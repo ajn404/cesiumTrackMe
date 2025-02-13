@@ -13,6 +13,7 @@
     "@radix-ui/react-tooltip": "^1.1.8",
     "cesium": "^1.125.0",
     "cesium-hooks": "workspace:*",
+    "cesium-babylon-extensions": "workspace:*",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "fs-extra": "^11.3.0",

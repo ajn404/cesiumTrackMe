@@ -32,6 +32,9 @@ importers:
       cesium:
         specifier: ^1.125.0
         version: 1.125.0
+      cesium-babylon-extensions:
+        specifier: workspace:*
+        version: link:../packages/cesium-babylon-extensions
       cesium-hooks:
         specifier: workspace:*
         version: link:../packages/cesium-hooks
