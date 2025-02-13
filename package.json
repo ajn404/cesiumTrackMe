@@ -3,7 +3,8 @@
   "private": true,
   "scripts": {
     "dev": "pnpm -F example dev",
-    "build": "pnpm -F cesium-hooks build&& pnpm -F cesium-babylon-extensions build"
+    "build": "pnpm -F cesium-hooks build&& pnpm -F cesium-babylon-extensions build",
+    "publish:hook":"pnpm -F cesium-hooks build && cd packages/cesium-hooks && npm publish"
   },
   "devDependencies": {
     "typescript": "^5.0.0",
