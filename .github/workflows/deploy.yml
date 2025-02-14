@@ -33,6 +33,7 @@ jobs:
         run: |
           cd example
           echo "VITE_ION_TOKEN=${{ secrets.CESIUM_ION_TOKEN }}" > .env
+          echo "VITE_TIANDITU_TOKEN=${{ secrets.TIANDITU_TOKEN }}" > .env
           pnpm build
           pnpm postbuild
         env:
