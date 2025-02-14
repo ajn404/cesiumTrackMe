@@ -14,14 +14,6 @@ export function TianDiTuMap() {
   }, [])
 
   const { cesiumContainerRef, viewer } = useCesium(import.meta.env.VITE_ION_TOKEN, {
-    defaultCamera: {
-      longitude: 116.3974,
-      latitude: 40.9093,
-      height: 3000,
-      heading: 45,
-      pitch: -45,
-      roll: 0
-    },
     terrainProvider,
     shouldAnimate: true,
     hideCredit: true,
@@ -31,9 +23,9 @@ export function TianDiTuMap() {
   useTianDiTu(viewer, {
     apiKey: import.meta.env.VITE_TIANDITU_TOKEN,
     initialPosition: {
-      longitude: 116.4074,
-      latitude: 39.9042,
-      height: 1000000
+      longitude: 116.5389,
+      latitude: 39.8209,
+      height: 500,
     },
     initialOrientation: {
       heading: 0,
