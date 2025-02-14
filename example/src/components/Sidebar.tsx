@@ -23,7 +23,9 @@ export function Sidebar() {
     <ShadcnSidebar className="w-64 border-r p-4">
       <SidebarContent>
         <div className="px-4 py-4">
-          <h1 className="text-lg font-semibold">Cesium Hooks</h1>
+          <h1 className="text-lg font-semibold" onClick={() => {
+            navigate("/")
+          }} >Cesium Hooks</h1>
         </div>
         {routes.map((group) => (
           group.items && (
