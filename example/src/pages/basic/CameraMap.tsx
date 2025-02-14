@@ -2,7 +2,7 @@ import { useCamera, useCesium } from 'cesium-hooks'
 import { Button } from '@/components/ui/button'
 
 export function CameraMap() {
-  const { cesiumContainerRef, viewer, isReady } = useCesium(import.meta.env.VITE_ION_TOKEN, {
+  const { cesiumContainerRef, viewer } = useCesium(import.meta.env.VITE_ION_TOKEN, {
     defaultCamera: {
       longitude: 116.3974,
       latitude: 39.9093,
