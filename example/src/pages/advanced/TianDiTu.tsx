@@ -24,7 +24,7 @@ export function TianDiTuMap() {
     },
     terrainProvider,
     shouldAnimate: true,
-    hideCredit: true
+    hideCredit: true,
   })
 
   // 使用自定义Hook
@@ -41,7 +41,11 @@ export function TianDiTuMap() {
       roll: 0
     },
     minLevel: 0,
-    maxLevel: 18
+    maxLevel: 18,
+    layers: {
+      image: true,
+      imageAnnotation: true
+    }
   });
 
   return (
