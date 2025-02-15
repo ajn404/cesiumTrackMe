@@ -1,12 +1,12 @@
 import React from "react";
-import { Routes, Route, BrowserRouter } from "react-router";
+import { Routes, Route } from "react-router";
 import { Layout } from "../components/Layout"
 import { Home } from "../pages/home"
 
 export function RouteRenderer({ routes }) {
     return (
-            <Routes>
-                <Route path="/" element={<Layout />}>
+        <Routes>
+            <Route path="/" element={<Layout />}>
                     <Route index element={<Home />} />
                     {routes.map((group) => {
                         if (group.items) {
@@ -18,7 +18,8 @@ export function RouteRenderer({ routes }) {
                             <Route key={group.path} path={group.path} element={<group.element />} />
                         );
                     })}
-                </Route>
-            </Routes>
+            </Route>
+
+        </Routes>
     );
 }

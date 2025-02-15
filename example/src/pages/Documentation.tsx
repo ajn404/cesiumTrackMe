@@ -95,6 +95,7 @@ export default function Documentation() {
                   return (
                     <a
                       href={href}
+                      className='text-blue-600 dark:text-blue-400'
                       onClick={(e) => {
                         e.preventDefault()
                         // 对 href 进行 CSS 选择器转义
@@ -110,7 +111,9 @@ export default function Documentation() {
                     </a>
                   )
                 }
-                return <a href={href} {...props}>{children}</a>
+                return <a
+                  className='text-blue-600 dark:text-blue-400'
+                  href={href} {...props}>{children}</a>
               },
               h1({ node, children, ...props }) {
                 return (
