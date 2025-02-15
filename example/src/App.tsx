@@ -1,28 +1,14 @@
-import { BrowserRouter, Routes, Route } from "react-router"
-import { Layout } from "./components/Layout"
-import { ThemeProvider } from "@/components/theme-provider"
-import { routes } from "@/constants/routes"
-import { Home } from "./pages/home"
+import { BrowserRouter } from "react-router";
+import { ThemeProvider } from "@/components/theme-provider";
+import { routes } from "@/constants/routes";
+import { RouteRenderer } from "./routes/RouteRenderer";
 
 export default function App() {
   return (
     <ThemeProvider>
       <BrowserRouter basename="/cesiumTrackMe">
-        <Routes>
-          <Route path="/" element={<Layout />}> 
-            <Route path="/" element={<Home />} />
-            {routes.map((group, index) =>
-              group.items ? (
-                group.items.map((item) => (
-                  <Route key={item.path} path={item.path} element={<item.element />} />
-                ))
-              ) : (
-                <Route key={group.path} path={group.path} element={<group.element />} />
-              )
-            )}
-          </Route>
-        </Routes>
+        <RouteRenderer routes={routes} />
       </BrowserRouter>
     </ThemeProvider>
-  )
+  );
 }
