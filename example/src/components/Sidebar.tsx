@@ -23,7 +23,7 @@ export function Sidebar() {
     <ShadcnSidebar className="w-64 border-r p-4">
       <SidebarContent>
         <div className="px-4 py-4">
-          <h1 className="text-lg font-semibold" onClick={() => {
+          <h1 className="text-lg font-semibold cursor-pointer hover:brightness-200" onClick={() => {
             navigate("/")
           }} >Cesium Hooks</h1>
         </div>

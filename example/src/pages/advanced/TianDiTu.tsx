@@ -2,7 +2,7 @@ import { useCesium, useTianDiTu } from 'cesium-hooks'
 import { useEffect, useState } from 'react'
 import * as Cesium from 'cesium'
 
-export function TianDiTuMap() {
+export default function TianDiTuMap() {
   const [terrainProvider, setTerrainProvider] = useState(null)
 
   useEffect(() => {

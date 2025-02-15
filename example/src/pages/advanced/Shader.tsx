@@ -2,7 +2,7 @@ import { useCesium } from 'cesium-hooks'
 import { useEffect } from 'react'
 import * as Cesium from 'cesium'
 
-export function ShaderMap() {
+export default function ShaderMap() {
     const { cesiumContainerRef, viewer } = useCesium(import.meta.env.VITE_ION_TOKEN, {
         hideCredit: true
     })

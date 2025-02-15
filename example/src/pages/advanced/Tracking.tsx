@@ -6,7 +6,7 @@ import { MODELS } from '@/constants/models';
 import { generateTrajectory } from '@/constants/utils';
 
 
-export const Tracking = function Tracking() {
+export default function Tracking() {
   const { cesiumContainerRef, viewer } = useCesium(import.meta.env.VITE_ION_TOKEN, {
     targetFrameRate: 30,
   })

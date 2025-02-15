@@ -1,5 +1,5 @@
-import { Map, Sun, Moon, Eye, Compass, Route } from "lucide-react"
-import { DefaultMap, SkyboxMap, AtmosphereMap, CameraMap, PerformanceMap, Tracking, Documentation, TerrainMap, ShaderMap, TianDiTuMap } from "@/pages"
+import { Map, Sun, Moon, Eye, Compass, Route } from "lucide-react";
+import { LazyLoad } from "@/components/hoc/LazyLoad";
 
 export const routes = [
     {
@@ -8,33 +8,33 @@ export const routes = [
             {
                 title: "默认地图",
                 path: "/basic/default",
-                element: DefaultMap,
+                element: LazyLoad(() => import('@/pages/basic/DefaultMap')),
                 icon: Map,
                 docs: "default-map",
             },
             {
                 title: "天空盒",
                 path: "/basic/skybox",
-                element: SkyboxMap,
+                element: LazyLoad(() => import('@/pages/basic/SkyboxMap')),
                 icon: Sun
             },
             {
                 title: "大气效果",
                 path: "/basic/atmosphere",
-                element: AtmosphereMap,
+                element: LazyLoad(() => import('@/pages/basic/AtmosphereMap')),
                 icon: Moon
             },
             {
                 title: "相机控制",
                 path: "/basic/camera",
-                element: CameraMap,
+                element: LazyLoad(() => import('@/pages/basic/CameraMap')),
                 docs:'use-camera',
                 icon: Eye
             },
             {
                 title: "性能优化",
                 path: "/basic/performance",
-                element: PerformanceMap,
+                element: LazyLoad(() => import('@/pages/basic/PerformanceMap')),
                 icon: Compass
             }
         ]
@@ -45,26 +45,26 @@ export const routes = [
             {
                 title: "轨迹追踪",
                 path: "/advanced/tracking",
-                element: Tracking,
+                element: LazyLoad(() => import('@/pages/advanced/Tracking')),
                 docs: "advance",
                 icon: Route
             },
             {
                 title: "地形地图",
                 path: "/advanced/terrain",
-                element: TerrainMap,
+                element: LazyLoad(() => import('@/pages/advanced/Terrain')),
                 icon: Route
             },
             {
                 title: "自定义着色器",
                 path: "/advanced/shader",
-                element: ShaderMap,
+                element: LazyLoad(() => import('@/pages/advanced/Shader')),
                 icon: Route
             },
             {
                 title: "天地图",
                 path: "/advanced/tianditu",
-                element: TianDiTuMap,
+                element: LazyLoad(() => import('@/pages/advanced/TianDiTu')),
                 icon: Route,
                 docs:'tianditu'
             }
@@ -72,6 +72,6 @@ export const routes = [
     },
     {
         path: "/:page",
-        element: Documentation
+        element: LazyLoad(() => import('@/pages/Documentation'))
     }
-]
+];

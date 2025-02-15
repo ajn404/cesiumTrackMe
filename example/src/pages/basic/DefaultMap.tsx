@@ -1,6 +1,6 @@
 import { useCesium } from 'cesium-hooks'
 
-export function DefaultMap() {
+export default function DefaultMap() {
   const { cesiumContainerRef } = useCesium(import.meta.env.VITE_ION_TOKEN)
 
   return (

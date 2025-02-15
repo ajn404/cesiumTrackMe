@@ -1,10 +1,10 @@
 import React, { Suspense } from "react";
 
-export const LazyLoad = (Component) => {
-    const LazyComponent = React.lazy(() => import(`./${Component}`));
-    return (
+export const LazyLoad = (importFunc) => {
+    const LazyComponent = React.lazy(importFunc);
+    return (props) => (
         <Suspense fallback={<div>Loading...</div>}>
-            <LazyComponent />
+            <LazyComponent {...props} />
         </Suspense>
     );
 };

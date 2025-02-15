@@ -1,4 +1,3 @@
-// src/routes/RouteRenderer.js
 import React from "react";
 import { Routes, Route } from "react-router";
 import { Layout } from "../components/Layout"

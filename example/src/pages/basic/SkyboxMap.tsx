@@ -1,6 +1,6 @@
 import { useCesium } from 'cesium-hooks'
 
-export function SkyboxMap() {
+export default function SkyboxMap() {
   const { cesiumContainerRef } = useCesium(import.meta.env.VITE_ION_TOKEN, {
     skyBox: true,
     defaultCamera: {

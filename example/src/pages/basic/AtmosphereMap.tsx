@@ -1,6 +1,6 @@
 import { useCesium } from 'cesium-hooks'
 
-export function AtmosphereMap() {
+export default function AtmosphereMap() {
   const { cesiumContainerRef } = useCesium(import.meta.env.VITE_ION_TOKEN, {
     skyAtmosphere: true,
     defaultCamera: {

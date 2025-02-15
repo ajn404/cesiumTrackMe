@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useCesium } from 'cesium-hooks'
 import { createWorldTerrainAsync } from 'cesium'
 
-export function TerrainMap() {
+export default function TerrainMap() {
   const [terrainProvider, setTerrainProvider] = useState(null)
 
   useEffect(() => {

@@ -1,6 +1,6 @@
 import { useCesium } from 'cesium-hooks'
 
-export function PerformanceMap() {
+export default function PerformanceMap() {
   const { cesiumContainerRef } = useCesium(import.meta.env.VITE_ION_TOKEN, {
     requestRenderMode: true,
     maximumRenderTimeChange: 1000,
