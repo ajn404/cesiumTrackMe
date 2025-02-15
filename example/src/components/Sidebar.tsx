@@ -11,7 +11,7 @@ import {
 import { Link, useLocation, useNavigate } from "react-router"
 import { FileText, Sun, Moon } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { routes } from "@/constants/routes"
+import { routes } from "@/routes/routes"
 import { useTheme } from "@/components/theme-provider"
 
 export function Sidebar() {
