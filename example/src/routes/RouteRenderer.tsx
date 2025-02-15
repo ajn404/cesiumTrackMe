@@ -5,7 +5,6 @@ import { Home } from "../pages/home"
 
 export function RouteRenderer({ routes }) {
     return (
-        <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Layout />}>
                     <Route index element={<Home />} />
@@ -21,6 +20,5 @@ export function RouteRenderer({ routes }) {
                     })}
                 </Route>
             </Routes>
-        </BrowserRouter>
     );
 }
