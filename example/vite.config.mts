@@ -22,4 +22,6 @@ export default defineConfig({
       "cesium-hooks": path.resolve(__dirname, "../packages/cesium-hooks/src")
     },
   },
+  server: {
+  }
 }) 

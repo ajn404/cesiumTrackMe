@@ -1,6 +1,7 @@
 import { Map, Sun, Moon, Eye, Compass, Route } from "lucide-react";
 import { LazyLoad } from "@/components/hoc/LazyLoad";
 
+
 export const routes = [
     {
         groupLabel: "基础功能",

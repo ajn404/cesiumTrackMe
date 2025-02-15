@@ -11,7 +11,7 @@ import remarkGithub, { defaultBuildUrl } from 'remark-github'
 import remarkToc from 'remark-toc'
 import rehypeSlug from 'rehype-slug'
 
-export function Documentation() {
+export default function Documentation() {
   const { page } = useParams()
   const [content, setContent] = useState('')
   const [toc, setToc] = useState('')
