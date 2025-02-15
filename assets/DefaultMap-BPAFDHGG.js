@@ -1,1 +1,0 @@
-import{j as e}from"./index-DkMtsVeE.js";import{u}from"./useCesium-CpZ63bg0.js";function a(){const{cesiumContainerRef:s}=u(void 0);return e.jsx("div",{className:"h-full w-full",children:e.jsx("div",{ref:s,className:"h-full w-full"})})}export{a as default};
