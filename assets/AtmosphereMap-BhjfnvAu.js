@@ -1,0 +1,1 @@
+import{j as e}from"./index-DkMtsVeE.js";import{u as s}from"./useCesium-CpZ63bg0.js";function l(){const{cesiumContainerRef:t}=s(void 0,{skyAtmosphere:!0,defaultCamera:{longitude:116.3974,latitude:39.9093,height:1e6,pitch:-45}});return e.jsx("div",{className:"h-full w-full",children:e.jsx("div",{ref:t,className:"h-full w-full"})})}export{l as default};
