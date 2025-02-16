@@ -8,7 +8,7 @@
     "type": "git",
     "url": "https://github.com/ajn404/cesiumTrackMe.git"
   },
-  "homepage": "http://ajn404.github.io/cesium",
+  "homepage": "http://ajn404.github.io/cesiumTrackMe",
   "type": "module",
   "main": "./dist/cesium-babylon-extensions.umd.cjs",
   "module": "./dist/cesium-babylon-extensions.js",

@@ -1,6 +1,6 @@
 {
   "name": "cesium-hooks",
-  "version": "0.0.54",
+  "version": "0.0.55",
   "description": "React hooks for CesiumJS integration",
   "author": "ajn404",
   "license": "MIT",
@@ -8,7 +8,7 @@
     "type": "git",
     "url": "https://github.com/ajn404/cesiumTrackMe.git"
   },
-  "homepage": "http://ajn404.github.io/cesium",
+  "homepage": "http://ajn404.github.io/cesiumTrackMe",
   "type": "module",
   "main": "./dist/cesium-hooks.umd.js",
   "module": "./dist/cesium-hooks.js",
