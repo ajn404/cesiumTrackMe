@@ -13,6 +13,7 @@ import {
     SkyAtmosphere
 } from "cesium";
 import "cesium/Build/Cesium/Widgets/widgets.css";
+import { useTianDiTu } from "./useTianDiTu";
 
 export interface CesiumViewerOptions {
     // 基础配置
@@ -183,6 +184,13 @@ export interface CesiumViewerOptions {
          */
         roll?: number
     }
+    /**
+     * 是否启用天地图
+     */
+    tianDiTu?: {
+        enabled: boolean,
+        token: string,
+    }
 }
 
 export interface UseCesiumReturn {
@@ -235,6 +243,19 @@ export function useCesium(
                 skyBox: options.skyBox ? new SkyBox({}) : false,
                 skyAtmosphere: options.skyAtmosphere ? new SkyAtmosphere() : false,
             });
+
+            if (options.tianDiTu?.enabled) {
+                if (!options.tianDiTu.token) {
+                    console.warn('Please provide a token for TianDiTu');
+                } else
+                    useTianDiTu(viewerRef, {
+                        apiKey: options.tianDiTu.token,
+                        layers: {
+                            image: true,
+                            imageAnnotation: true
+                        }
+                    })
+            }
 
             // 隐藏版权信息
             if (options.hideCredit) {
