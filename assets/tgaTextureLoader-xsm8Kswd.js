@@ -1,1 +1,0 @@
-import{g as a,h as n}from"./PBR-BlsDW6OL.js";import"./index-BLrdrK_U.js";import"./useCesium-D_1Ofcts.js";class f{constructor(){this.supportCascades=!1}loadCubeData(){throw".env not supported in Cube."}loadData(e,t,s){const o=new Uint8Array(e.buffer,e.byteOffset,e.byteLength),r=a(o);s(r.width,r.height,t.generateMipMaps,!1,()=>{n(t,o)})}}export{f as _TGATextureLoader};
