@@ -7,7 +7,6 @@ import rehypeHighlight from 'rehype-highlight'
 import 'highlight.js/styles/github-dark.css'
 import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
-import remarkGithub, { defaultBuildUrl } from 'remark-github'
 import remarkToc from 'remark-toc'
 import rehypeSlug from 'rehype-slug'
 
@@ -68,8 +67,8 @@ export default function Documentation() {
   }, [page])
 
   return (
-    <div className="max-w-full mx-auto px-4 py-8 flex">
-      <div className="w-3/4">
+    <div className="overflow-hidden mx-auto px-4 py-8 flex">
+      <div className="w-3/4 overflow-scroll">
         <h1 className="flex items-center gap-2 text-3xl font-bold mb-8">
           <FileText className="w-8 h-8" />
           文档 - {page}
@@ -78,15 +77,7 @@ export default function Documentation() {
           <ReactMarkdown
             remarkPlugins={[
               remarkGfm,
-              remarkMath,
-              [remarkGithub, {
-                repository: 'ajn404/cesiumTrackMe',
-                buildUrl(values) {
-                  return values.type === 'mention'
-                    ? `http://ajn404.github.io/cesiumTrackMe/${values.user}/`
-                    : defaultBuildUrl(values)
-                }
-              }]
+              remarkMath
             ]}
             rehypePlugins={[rehypeSlug, rehypeHighlight, rehypeKatex]}
             components={{
@@ -150,11 +141,17 @@ export default function Documentation() {
                   </p>
                 )
               },
+              pre({ node, children, ...props }) { 
+                return (
+                  <pre className="bg-gray-900 inline-block mx-auto dark:bg-gray-700 p-4 rounded-lg overflow-auto text-sm" {...props}>
+                    {children}
+                  </pre>)
+              },
               code({ node, className, children, ...props }) {
                 const inline = (props as { inline?: boolean }).inline;
                 const match = /language-(\w+)/.exec(className || '')
                 return !inline && match ? (
-                  <div className="rounded-lg overflow-hidden">
+                  <div className=" rounded-lg overflow-hidden">
                     <div className="bg-gray-900 dark:bg-gray-500 px-4 py-2 text-sm text-gray-400 dark:text-gray-300">
                       {match[1]}
                     </div>

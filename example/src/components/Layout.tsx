@@ -7,7 +7,7 @@ export function Layout() {
         <SidebarProvider>
             <div className="flex h-screen w-screen">
                 <Sidebar />
-                <main className="flex-1">
+                <main className="flex-1 max-w-full">
                     <Outlet />
                 </main>
             </div>
