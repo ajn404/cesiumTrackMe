@@ -1,4 +1,4 @@
-import { Map, Sun, Moon, Eye, Compass, Route } from "lucide-react";
+import { Map, Sun, Moon, Eye, Compass, Route, LucideBedDouble } from "lucide-react";
 import { LazyLoad } from "@/components/hoc/LazyLoad";
 
 
@@ -29,7 +29,7 @@ export const routes = [
                 title: "相机控制",
                 path: "/basic/camera",
                 element: LazyLoad(() => import('@/pages/basic/CameraMap')),
-                docs:'use-camera',
+                docs: 'use-camera',
                 icon: Eye
             },
             {
@@ -37,6 +37,12 @@ export const routes = [
                 path: "/basic/performance",
                 element: LazyLoad(() => import('@/pages/basic/PerformanceMap')),
                 icon: Compass
+            },
+            {
+                title: "多地图",
+                path: "/basic/multiple",
+                element: LazyLoad(() => import('@/pages/basic/MultipleMap')),
+                icon: LucideBedDouble
             }
         ]
     },
@@ -67,7 +73,7 @@ export const routes = [
                 path: "/advanced/tianditu",
                 element: LazyLoad(() => import('@/pages/advanced/TianDiTu')),
                 icon: Route,
-                docs:'tianditu'
+                docs: 'tianditu'
             }
         ]
     },

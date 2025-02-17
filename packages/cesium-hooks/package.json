@@ -1,6 +1,6 @@
 {
   "name": "cesium-hooks",
-  "version": "0.0.57",
+  "version": "0.0.58",
   "description": "React hooks for CesiumJS integration",
   "author": "ajn404",
   "license": "MIT",
