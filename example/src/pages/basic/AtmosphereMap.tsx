@@ -5,6 +5,7 @@ export default function AtmosphereMap() {
   const { mapProvider } = useContext(MapContext)
 
   const { cesiumContainerRef } = useCesium(import.meta.env.VITE_ION_TOKEN, {
+    hideCredit: true,
     skyAtmosphere: true,
     defaultCamera: {
       longitude: 116.3974,

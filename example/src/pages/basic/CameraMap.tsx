@@ -6,6 +6,7 @@ export default function CameraMap() {
     const { mapProvider } = useContext(MapContext)
   
   const { cesiumContainerRef, viewer } = useCesium(import.meta.env.VITE_ION_TOKEN, {
+    hideCredit: true,
     defaultCamera: {
       longitude: 116.3974,
       latitude: 39.9093,

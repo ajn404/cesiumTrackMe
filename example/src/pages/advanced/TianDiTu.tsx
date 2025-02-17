@@ -1,17 +1,6 @@
 import { useCesium, useTianDiTu } from 'cesium-hooks'
-// import { useEffect, useState } from 'react'
-// import * as Cesium from 'cesium'
 
 export default function TianDiTuMap() {
-  // const [terrainProvider, setTerrainProvider] = useState(null)
-
-  // useEffect(() => {
-  //   const fetchTerrainProvider = async () => {
-  //     const terrain = await Cesium.createWorldTerrainAsync({})
-  //     setTerrainProvider(terrain)
-  //   }
-  //   fetchTerrainProvider()
-  // }, [])
 
   const { cesiumContainerRef, viewer } = useCesium(import.meta.env.VITE_ION_TOKEN, {
     shouldAnimate: true,

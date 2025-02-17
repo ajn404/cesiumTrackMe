@@ -6,6 +6,7 @@ export default function SkyboxMap() {
   const { mapProvider } = useContext(MapContext)
 
   const { cesiumContainerRef } = useCesium(import.meta.env.VITE_ION_TOKEN, {
+    hideCredit: true,
     skyBox: true,
     defaultCamera: {
       longitude: 116.3974,

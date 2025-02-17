@@ -2,21 +2,33 @@
 
 一个用于 Cesium + React 应用的 Hooks 库，简化 Cesium 在 React 中的集成。
 
-## 安装
+## 开始
 
 ```bash
-npm install cesium-hooks
-```
-或
-```bash
-pnpm add cesium-hooks
-```
-或
-```bash
-yarn add cesium-hooks
+npx create-react-app my-app
+# use vite+react
+npm i cesium vite-plugin-cesium cesium-hooks
 ```
 
-## 快速开始
+- vite.config.mts
+
+```ts
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import cesium from 'vite-plugin-cesium'
+import path from "path"
+
+export default defineConfig({
+  plugins: [react(), cesium()],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  }
+}) 
+```
+
+## hello world
 
 ```tsx
 import { useCesium } from 'cesium-hooks';
