@@ -65,9 +65,9 @@ export default function DefaultMap() {
         const babylonLight = new BABYLON.HemisphericLight('light', new BABYLON.Vector3(0, 1, 0), babylonScene);
 
         // 同步渲染循环
-        babylonEngine.runRenderLoop(() => {
-            babylonScene.render();
-        });
+        // babylonEngine.runRenderLoop(() => {
+        //     babylonScene.render();
+        // });
 
         // 清理函数
         return () => {
