@@ -1,6 +1,10 @@
 import { useCesium } from 'cesium-hooks'
+import { MapContext } from '@/context/MapProvider'
+import { useContext } from 'react'
 
 export default function SkyboxMap() {
+  const { mapProvider } = useContext(MapContext)
+
   const { cesiumContainerRef } = useCesium(import.meta.env.VITE_ION_TOKEN, {
     skyBox: true,
     defaultCamera: {
@@ -8,7 +12,11 @@ export default function SkyboxMap() {
       latitude: 39.9093,
       height: 5000000,
       pitch: -45
-    }
+    },
+    tianDiTu: {
+      enabled: mapProvider === 'Tianditu',
+      token: import.meta.env.VITE_TIANDITU_TOKEN
+    },
   })
 
   return (

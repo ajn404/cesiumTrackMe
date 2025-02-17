@@ -1,10 +1,17 @@
 import { useCesium } from 'cesium-hooks'
 import { useEffect } from 'react'
 import * as Cesium from 'cesium'
+import { MapContext } from '@/context/MapProvider'
+import { useContext } from 'react'
 
 export default function ShaderMap() {
+    const { mapProvider } = useContext(MapContext)
     const { cesiumContainerRef, viewer } = useCesium(import.meta.env.VITE_ION_TOKEN, {
-        hideCredit: true
+        hideCredit: true,
+        tianDiTu: {
+            enabled: mapProvider === 'Tianditu',
+            token: import.meta.env.VITE_TIANDITU_TOKEN
+        },
     })
 
     useEffect(() => {

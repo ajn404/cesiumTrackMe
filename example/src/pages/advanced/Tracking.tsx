@@ -4,11 +4,17 @@ import { useMemo } from 'react'
 import { Color } from 'cesium'
 import { MODELS } from '@/constants/models';
 import { generateTrajectory } from '@/constants/utils';
-
+import { MapContext } from '@/context/MapProvider'
+import { useContext } from 'react'
 
 export default function Tracking() {
+  const { mapProvider } = useContext(MapContext)
   const { cesiumContainerRef, viewer } = useCesium(import.meta.env.VITE_ION_TOKEN, {
     targetFrameRate: 30,
+    tianDiTu: {
+      enabled: mapProvider === 'Tianditu',
+      token: import.meta.env.VITE_TIANDITU_TOKEN
+    },
   })
 
   // 使用 useMemo 来缓存轨迹点数据

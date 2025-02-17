@@ -1,7 +1,10 @@
 import { useCamera, useCesium } from 'cesium-hooks'
 import { Button } from '@/components/ui/button'
-
+import { MapContext } from '@/context/MapProvider'
+import { useContext } from 'react'
 export default function CameraMap() {
+    const { mapProvider } = useContext(MapContext)
+  
   const { cesiumContainerRef, viewer } = useCesium(import.meta.env.VITE_ION_TOKEN, {
     defaultCamera: {
       longitude: 116.3974,
@@ -11,7 +14,11 @@ export default function CameraMap() {
       pitch: -45,
       roll: 0
     },
-    enableDrag: false
+    enableDrag: false,
+    tianDiTu: {
+      enabled: mapProvider === 'Tianditu',
+      token: import.meta.env.VITE_TIANDITU_TOKEN
+    },
   })
   let { flyTo, zoomIn, zoomOut, setView, getCurrentPosition } = useCamera({
     viewer 

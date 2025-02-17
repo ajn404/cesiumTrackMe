@@ -28,8 +28,13 @@ export function useTianDiTu(viewer: MutableRefObject<Viewer | undefined>, option
     const layersRef = useRef<ImageryLayer[]>([]);
 
     useEffect(() => {
+
         if (!viewer.current || !options?.apiKey) {
             console.warn('Viewer or API key is not provided');
+            return;
+        }
+
+        if (options?.apiKey === 'none') {
             return;
         }
 

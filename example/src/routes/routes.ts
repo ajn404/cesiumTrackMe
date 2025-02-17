@@ -63,7 +63,7 @@ export const routes = [
                 icon: Route
             },
             {
-                title: "天地图",
+                title: "天地图(可全局配置)",
                 path: "/advanced/tianditu",
                 element: LazyLoad(() => import('@/pages/advanced/TianDiTu')),
                 icon: Route,

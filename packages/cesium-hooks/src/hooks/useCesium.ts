@@ -244,19 +244,6 @@ export function useCesium(
                 skyAtmosphere: options.skyAtmosphere ? new SkyAtmosphere() : false,
             });
 
-            if (options.tianDiTu?.enabled) {
-                if (!options.tianDiTu.token) {
-                    console.warn('Please provide a token for TianDiTu');
-                } else
-                    useTianDiTu(viewerRef, {
-                        apiKey: options.tianDiTu.token,
-                        layers: {
-                            image: true,
-                            imageAnnotation: true
-                        }
-                    })
-            }
-
             // 隐藏版权信息
             if (options.hideCredit) {
                 (viewer.cesiumWidget.creditContainer as HTMLElement).style.display = "none";
@@ -302,6 +289,14 @@ export function useCesium(
             };
         }
     }, []); // 依赖项为空数组，确保只初始化一次
+
+    useTianDiTu(viewerRef, {
+        apiKey: (options.tianDiTu && options.tianDiTu.enabled)?options.tianDiTu.token:'none',
+        layers: {
+            image: true,
+            imageAnnotation:true
+        }
+    })
 
     return {
         cesiumContainerRef,
