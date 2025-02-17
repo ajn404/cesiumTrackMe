@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import {
   Sidebar as ShadcnSidebar,
   SidebarContent,
@@ -24,12 +24,24 @@ import { routes } from "@/routes/routes"
 import { useTheme } from "@/context/ThemeProvider"
 import { MapContext, MapProviderType } from "@/context/MapProvider"
 
-
 export function Sidebar() {
   const location = useLocation()
   const navigate = useNavigate()
   const { theme, setTheme } = useTheme()
   const { mapProvider, setMapProvider } = React.useContext(MapContext)
+
+  // 从 localStorage 中读取 mapProvider 的值
+  useEffect(() => {
+    const storedMapProvider = localStorage.getItem('mapProvider') as MapProviderType
+    if (storedMapProvider) {
+      setMapProvider(storedMapProvider)
+    }
+  }, [setMapProvider])
+
+  const handleMapProviderChange = (value: MapProviderType) => {
+    setMapProvider(value)
+    localStorage.setItem('mapProvider', value)
+  }
 
   return (
     <ShadcnSidebar className="w-64 border-r p-4">
@@ -81,7 +93,7 @@ export function Sidebar() {
               {index !== filteredGroups.length - 1 && <SidebarSeparator />}
             </React.Fragment>
           ))}
-        <Select value={mapProvider} onValueChange={(value) => setMapProvider(value as MapProviderType)}>
+        <Select value={mapProvider} onValueChange={(value) => handleMapProviderChange(value as MapProviderType)}>
           <SelectTrigger className="w-[180px] m-auto">
             <SelectValue placeholder="默认地图" />
           </SelectTrigger>
@@ -124,7 +136,6 @@ export function Sidebar() {
               <path d="M1.763 0C.786 0 0 .786 0 1.763v20.474C0 23.214.786 24 1.763 24h20.474c.977 0 1.763-.786 1.763-1.763V1.763C24 .786 23.214 0 22.237 0zM5.13 5.323l13.837.019-.009 13.836h-3.464l.01-10.382h-3.456L12.04 19.17H5.113z" />
             </svg>
           </a>
-
         </div>
       </SidebarContent>
     </ShadcnSidebar>

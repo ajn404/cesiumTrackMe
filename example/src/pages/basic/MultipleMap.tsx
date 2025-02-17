@@ -1,6 +1,6 @@
 import { useCesium } from 'cesium-hooks'
 import { MapContext } from '@/context/MapProvider'
-import { useContext,useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 import { Cartesian2, Cartesian3, ClockViewModel, defined, SceneMode } from 'cesium';
 
 export default function MultipleMap() {
@@ -10,7 +10,7 @@ export default function MultipleMap() {
     const map2D = useCesium(
         import.meta.env.VITE_ION_TOKEN,
         {
-            hideCredit:true,
+            hideCredit: true,
             clockViewModel: clockViewModel,
             sceneMode: SceneMode.SCENE2D,
             tianDiTu: {
@@ -35,14 +35,14 @@ export default function MultipleMap() {
     )
 
     useEffect(() => {
-        if(map2D.viewer.current && map3D.viewer.current) {
+        if (map2D.viewer.current && map3D.viewer.current) {
             const view2D = map2D.viewer.current;
             const view3D = map3D.viewer.current;
 
             let worldPosition;
             let distance;
 
-            function sync2DView() {
+            const sync2DView = () => {
                 const viewCenter = new Cartesian2(
                     Math.floor(view3D.canvas.clientWidth / 2),
                     Math.floor(view3D.canvas.clientHeight / 2),
@@ -63,7 +63,7 @@ export default function MultipleMap() {
             view3D.camera.changed.addEventListener(sync2DView);
             view3D.camera.percentageChanged = 0.01;
         }
-    },[map2D.viewer, map3D.viewer])
+    }, [map2D.viewer, map3D.viewer])
 
     return (
         <div className="h-full w-full flex">

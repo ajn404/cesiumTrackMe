@@ -1,4 +1,4 @@
-import { Map, Sun, Moon, Eye, Compass, Route, LucideBedDouble } from "lucide-react";
+import { Map, Sun, Moon, Eye, Compass, Route, LucideBedDouble, Grid } from "lucide-react";
 import { LazyLoad } from "@/components/hoc/LazyLoad";
 
 
@@ -74,7 +74,13 @@ export const routes = [
                 element: LazyLoad(() => import('@/pages/advanced/TianDiTu')),
                 icon: Route,
                 docs: 'tianditu'
-            }
+            },
+            {
+                title: "实体",
+                path: "/advanced/entities",
+                element: LazyLoad(() => import('@/pages/advanced/Entities')),
+                icon: Grid
+            },
         ]
     },
     {
