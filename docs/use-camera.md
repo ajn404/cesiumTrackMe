@@ -19,8 +19,10 @@
 import { useCamera, useCesium } from 'cesium-hooks'
 
 function CameraControl() {
-  const { cesiumContainerRef, viewer, isReady } = useCesium(import.meta.env.VITE_ION_TOKEN)
-  const { flyTo, zoomIn, zoomOut, getCurrentPosition } = useCamera({ viewer: isReady ? viewer : undefined })
+  const { cesiumContainerRef, viewer, isReady } = 
+  useCesium(import.meta.env.VITE_ION_TOKEN)
+  const { flyTo, zoomIn, zoomOut, getCurrentPosition } = 
+  useCamera({ viewer: isReady ? viewer : undefined })
 
   const handleFlyToBeijing = () => {
     flyTo({
@@ -43,7 +45,7 @@ function CameraControl() {
 
 ### useCamera 参数
 
-```typescript
+```tsx
 interface UseCameraProps {
     viewer?: Viewer;
     duration?: number; // 动画持续时间，默认 2 秒
@@ -52,12 +54,17 @@ interface UseCameraProps {
 
 ### 返回对象
 
-```typescript
+```tsx
 {
   flyTo: (position: { longitude: number, latitude: number, height: number }) => void;
   zoomIn: (amount?: number) => void;
   zoomOut: (amount?: number) => void;
-  setView: (position: { longitude: number, latitude: number, height: number }, heading?: number, pitch?: number, roll?: number) => void;
+  setView: (position: { 
+    longitude: number, 
+    latitude: number, 
+    height: number }, 
+    heading?: number, 
+    pitch?: number, roll?: number) => void;
   getCurrentPosition: () => { longitude: number, latitude: number, height: number } | null;
 }
 ```
