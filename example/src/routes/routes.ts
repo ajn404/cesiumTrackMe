@@ -84,6 +84,17 @@ export const routes = [
         ]
     },
     {
+        groupLabel: "探索",
+        items: [
+            {
+                title: "PBR",
+                path: "/explore/pbr",
+                element: LazyLoad(() => import('@/pages/explore/PBR')),
+                icon: Grid
+            }
+        ]
+    },
+    {
         path: "/:page",
         element: LazyLoad(() => import('@/pages/Documentation'))
     }
