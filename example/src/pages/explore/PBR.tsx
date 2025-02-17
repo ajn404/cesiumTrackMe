@@ -67,9 +67,11 @@ export default function DefaultMap() {
     )
 
     const babylonCanvasRef = useRef<HTMLCanvasElement>(null)
+    const babylonEngineRef = useRef<Engine | null>(null)
+    const isMountedRef = useRef(false)
 
     useEffect(() => {
-        if (!viewer.current||!babylonCanvasRef.current) return;
+        if (!viewer.current || !babylonCanvasRef.current) return;
         const cesiumViewer = viewer.current;
         const cesiumCamera = cesiumViewer.camera;
 
@@ -82,6 +84,7 @@ export default function DefaultMap() {
         });
         
         const babylonEngine = new Engine(babylonCanvasRef.current);
+        babylonEngineRef.current = babylonEngine;
         const babylonScene = new Scene(babylonEngine);
         babylonScene.clearColor = new Color4(0, 0, 0, 0);
         const babylonCamera = new FreeCamera("camera", new Vector3(0, 0, -10), babylonScene);
@@ -103,13 +106,32 @@ export default function DefaultMap() {
         ground.material = material;
         ground.parent = root_node;
 
+        isMountedRef.current = true;
 
-        babylonEngine.runRenderLoop(() => {
-            cesiumViewer.render();
-            changeBabylonCamera(cesiumViewer, babylonCamera);
-            babylonScene.render();
-        });
+        const renderLoop = () => {
+            if (!isMountedRef.current || cesiumViewer.isDestroyed()) {
+                return;
+            }
+            try {
+                cesiumViewer.render();
+                changeBabylonCamera(cesiumViewer, babylonCamera);
+                babylonScene.render();
+            } catch (error) {
+                console.error('Render loop error:', error);
+            }
+        };
 
+        babylonEngine.runRenderLoop(renderLoop);
+
+        return () => {
+            isMountedRef.current = false;
+
+            if (babylonEngineRef.current) {
+                babylonEngineRef.current.stopRenderLoop();
+                babylonEngineRef.current.dispose();
+                babylonEngineRef.current = null;
+            }
+        };
 
     }, [viewer, babylonCanvasRef]);
 
