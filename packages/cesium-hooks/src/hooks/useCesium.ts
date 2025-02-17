@@ -44,6 +44,7 @@ export interface CesiumViewerOptions {
     requestRenderMode?: boolean;
     maximumRenderTimeChange?: number;
     targetFrameRate?: number;
+    useDefaultRenderLoop?: boolean;
 
     // 视觉效果
     skyBox?: boolean;
@@ -114,7 +115,8 @@ export function useCesium(
                 navigationHelpButton: false,
                 requestRenderMode: true,
                 maximumRenderTimeChange: 1000,
-                sceneMode: SceneMode.SCENE3D // 默认场景模式
+                sceneMode: SceneMode.SCENE3D, // 默认场景模式
+                useDefaultRenderLoop: true // 默认使用默认渲染循环
             };
 
             // 合并配置
@@ -124,6 +126,11 @@ export function useCesium(
                 skyBox: options.skyBox ? new SkyBox({}) : false,
                 skyAtmosphere: options.skyAtmosphere ? new SkyAtmosphere() : false,
             });
+
+            // 设置是否使用默认渲染循环
+            if (options.useDefaultRenderLoop !== undefined) {
+                viewer.useDefaultRenderLoop = options.useDefaultRenderLoop;
+            }
 
             // 隐藏版权信息
             if (options.hideCredit) {
