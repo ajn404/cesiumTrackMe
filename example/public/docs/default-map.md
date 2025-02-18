@@ -12,7 +12,6 @@
 
 ## 使用说明
 
-
 ```tsx
 import { useCesium } from 'cesium-hooks'
 function DefaultMap() {
@@ -25,14 +24,12 @@ function DefaultMap() {
 }
 ```
 
-
 ## 注意事项
 
 - 需要有效的 Cesium Ion Token
 - 首次加载可能需要等待资源下载
 
-
-## 更多api
+## 更多 API
 
 ```tsx
 import { useCesium } from 'cesium-hooks'
@@ -43,18 +40,41 @@ function AdvancedMap() {
     baseLayerPicker: true,
     timeline: true,
     animation: true,
-    
+    fullscreenButton: true,
+    vrButton: true,
+    geocoder: true,
+    homeButton: true,
+    infoBox: true,
+    sceneModePicker: true,
+    selectionIndicator: true,
+    navigationHelpButton: true,
+    navigationInstructionsInitiallyVisible: true,
+    scene3DOnly: false,
+    shouldAnimate: true,
+    clockViewModel: undefined,
+    selectedImageryProviderViewModel: undefined,
+    selectedTerrainProviderViewModel: undefined,
+    imageryProviderViewModels: [],
+    terrainProviderViewModels: [],
+
     // 性能优化
     requestRenderMode: true,
     maximumRenderTimeChange: 1000,
     targetFrameRate: 60,
-    
+    useDefaultRenderLoop: true,
+
     // 视觉效果
     skyBox: true,
     skyAtmosphere: true,
+    globe: undefined,
+    orderIndependentTranslucency: true,
     shadows: true,
-    
-    // 相机设置
+    terrainShadows: 1,
+    mapProjection: undefined,
+
+    // 自定义配置
+    hideCredit: true,
+    enableDrag: true,
     defaultCamera: {
       longitude: 116.397,
       latitude: 39.908,
@@ -62,7 +82,12 @@ function AdvancedMap() {
       heading: 0,
       pitch: -90,
       roll: 0
-    }
+    },
+    tianDiTu: {
+      enabled: true,
+      token: import.meta.env.VITE_TIANDITU_TOKEN
+    },
+    sceneMode: Cesium.SceneMode.SCENE3D
   })
 
   return (
@@ -81,19 +106,41 @@ function AdvancedMap() {
 - `baseLayerPicker`: 是否显示基础图层选择器
 - `timeline`: 是否显示时间轴
 - `animation`: 是否显示动画控件
+- `fullscreenButton`: 是否显示全屏按钮
+- `vrButton`: 是否显示 VR 按钮
+- `geocoder`: 是否显示地理编码器
+- `homeButton`: 是否显示主页按钮
+- `infoBox`: 是否显示信息框
+- `sceneModePicker`: 是否显示场景模式选择器
+- `selectionIndicator`: 是否显示选择指示器
+- `navigationHelpButton`: 是否显示导航帮助按钮
+- `navigationInstructionsInitiallyVisible`: 导航说明是否初始可见
+- `scene3DOnly`: 是否仅使用 3D 场景模式
+- `shouldAnimate`: 是否启用动画
+- `clockViewModel`: 自定义时钟视图模型
+- `selectedImageryProviderViewModel`: 选择的影像提供器视图模型
+- `selectedTerrainProviderViewModel`: 选择的地形提供器视图模型
+- `imageryProviderViewModels`: 影像提供器视图模型数组
+- `terrainProviderViewModels`: 地形提供器视图模型数组
 
 #### 性能优化
 - `requestRenderMode`: 启用按需渲染模式
 - `maximumRenderTimeChange`: 最大渲染时间变化
 - `targetFrameRate`: 目标帧率
+- `useDefaultRenderLoop`: 是否使用默认渲染循环
 
 #### 视觉效果
 - `skyBox`: 是否显示天空盒
 - `skyAtmosphere`: 是否显示大气效果
+- `globe`: 自定义地球对象
+- `orderIndependentTranslucency`: 是否启用顺序无关的透明度
 - `shadows`: 是否启用阴影
 - `terrainShadows`: 地形阴影设置
+- `mapProjection`: 自定义地图投影
 
-#### 相机控制
+#### 自定义配置
+- `hideCredit`: 是否隐藏版权信息
+- `enableDrag`: 是否启用拖拽
 - `defaultCamera`: 设置默认相机位置
   - `longitude`: 经度
   - `latitude`: 纬度
@@ -101,6 +148,10 @@ function AdvancedMap() {
   - `heading`: 朝向角度
   - `pitch`: 俯仰角度
   - `roll`: 翻滚角度
+- `tianDiTu`: 天地图配置
+  - `enabled`: 是否启用天地图
+  - `token`: 天地图访问令牌
+- `sceneMode`: 场景模式（2D、3D、哥伦布视图）
 
 ## 注意事项
 
@@ -110,7 +161,6 @@ function AdvancedMap() {
 4. 相机位置设置时注意单位（经度/纬度使用度，高度使用米）
 
 ## 使用案例
-
 
 ### 隐藏版权信息
 
