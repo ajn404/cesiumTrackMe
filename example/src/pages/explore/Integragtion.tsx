@@ -16,7 +16,7 @@ const base_point = cart2vec(Cesium.Cartesian3.fromDegrees(LNG, LAT, 50));
 const base_point_up = cart2vec(Cesium.Cartesian3.fromDegrees(LNG, LAT, 300));
 
 
-const changeBabylonCamera = (viewer: Viewer, camera: ArcRotateCamera) => {
+const changeBabylonCamera = (viewer: Viewer, camera: FreeCamera) => {
     let fov = Cesium.Math.toDegrees((viewer.camera.frustum as Cesium.PerspectiveFrustum).fovy);
     camera.fov = fov / 180 * Math.PI;
 
@@ -27,7 +27,6 @@ const changeBabylonCamera = (viewer: Viewer, camera: ArcRotateCamera) => {
         civm[8], civm[9], civm[10], civm[11],
         civm[12], civm[13], civm[14], civm[15]
     );
-
 
     let scaling = BABYLON.Vector3.Zero(), rotation = new BABYLON.Quaternion(), transform = BABYLON.Vector3.Zero();
     camera_matrix.decompose(scaling, rotation, transform);
@@ -47,6 +46,7 @@ const changeBabylonCamera = (viewer: Viewer, camera: ArcRotateCamera) => {
     camera.position.x = camera_pos.x - base_point.x;
     camera.position.y = camera_pos.y - base_point.y;
     camera.position.z = camera_pos.z - base_point.z;
+    console.log(camera.position)
     camera.rotation.x = rotation_x;
     camera.rotation.y = rotation_y;
     camera.rotation.z = rotation_z;
@@ -86,13 +86,20 @@ export default function DefaultMap() {
         babylonEngineRef.current = babylonEngine;
         const babylonScene = new Scene(babylonEngine);
         babylonScene.clearColor = new Color4(0, 0, 0, 0);
-        const babylonCamera = new ArcRotateCamera("camera", Math.PI / 2, Math.PI / 2, 2, BABYLON.Vector3.Zero(), babylonScene);
-        babylonCamera.attachControl(babylonCanvasRef.current,true)
+        const babylonCamera = new FreeCamera("camera", new BABYLON.Vector3(0, 0, -10), babylonScene);
+        
+        // babylonCamera.attachControl(babylonCanvasRef.current,true)
+
+
+        // 添加光源
+        const light = new HemisphericLight("light", new Vector3(0, 1, 0), babylonScene);
+        light.intensity = 0.7;
+
         const root_node = new BABYLON.TransformNode("BaseNode", babylonScene);
         root_node.lookAt(base_point_up.subtract(base_point));
         root_node.addRotation(Math.PI / 2, 0, 0);
 
-        const box = BABYLON.MeshBuilder.CreateBox("box", { size: 10 }, babylonScene);
+        const box = BABYLON.MeshBuilder.CreateBox("box", { size: 1 }, babylonScene);
         const material = new BABYLON.StandardMaterial("Material", babylonScene);
         material.emissiveColor = new BABYLON.Color3(1, 0, 0);
         material.alpha = 0.5;
@@ -100,11 +107,20 @@ export default function DefaultMap() {
         box.parent = root_node;
 
         const ground = BABYLON.MeshBuilder.CreateGround("ground", {
-            width: 100,
-            height: 100
+            width: 200,
+            height: 200
         }, babylonScene);
         ground.material = material;
         ground.parent = root_node;
+
+        // Create a sphere.
+        const sphere = BABYLON.MeshBuilder.CreateSphere("sphere", {
+            diameter: 200,
+        }, babylonScene);
+        sphere.position.y = 1; // Lift the sphere slightly above the ground.
+        const sphereMaterial = new BABYLON.StandardMaterial("sphereMaterial", babylonScene);
+        sphereMaterial.diffuseColor = new BABYLON.Color3(1, 0, 0); // Red color for the sphere.
+        sphere.material = sphereMaterial;
 
         isMountedRef.current = true;
 
@@ -139,7 +155,7 @@ export default function DefaultMap() {
     return (
         <div className="h-full w-full">
             <div ref={cesiumContainerRef} className="h-full w-full" />
-            <canvas ref={babylonCanvasRef} className="h-full w-full absolute top-0 left-0" />
+            <canvas ref={babylonCanvasRef} className="h-full w-full absolute top-0 left-0 pointer-events-none" />
         </div>
     )
 }
