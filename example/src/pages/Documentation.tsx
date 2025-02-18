@@ -67,8 +67,8 @@ export default function Documentation() {
   }, [page])
 
   return (
-    <div className="overflow-hidden mx-auto px-4 py-8 flex">
-      <div className="w-3/4 overflow-scroll">
+    <div className="mx-auto px-4 py-8 flex">
+      <div className="w-3/4">
         <h1 className="flex items-center gap-2 text-3xl font-bold mb-8">
           <FileText className="w-8 h-8" />
           文档 - {page}

@@ -46,7 +46,6 @@ const changeBabylonCamera = (viewer: Viewer, camera: FreeCamera) => {
     camera.position.x = camera_pos.x - base_point.x;
     camera.position.y = camera_pos.y - base_point.y;
     camera.position.z = camera_pos.z - base_point.z;
-    console.log(camera.position)
     camera.rotation.x = rotation_x;
     camera.rotation.y = rotation_y;
     camera.rotation.z = rotation_z;
@@ -57,6 +56,9 @@ export default function DefaultMap() {
     const { cesiumContainerRef, viewer } = useCesium(
         import.meta.env.VITE_ION_TOKEN,
         {
+            timeline: true,
+            homeButton: true,
+            navigationHelpButton: true,
             tianDiTu: {
                 enabled: mapProvider === 'Tianditu',
                 token: import.meta.env.VITE_TIANDITU_TOKEN
