@@ -6,7 +6,7 @@ import { Viewer } from 'cesium'
 import * as BABYLON from '@babylonjs/core'
 import * as Cesium from 'cesium'
 
-const LNG = -122.4175, LAT = 37.655;
+const LNG = 121.472644, LAT = 31.231706;
 
 function cart2vec(cart) {
     return new BABYLON.Vector3(cart.x, cart.z, cart.y);
@@ -16,8 +16,8 @@ const base_point = cart2vec(Cesium.Cartesian3.fromDegrees(LNG, LAT, 50));
 const base_point_up = cart2vec(Cesium.Cartesian3.fromDegrees(LNG, LAT, 300));
 
 
-const changeBabylonCamera = (viewer: Viewer, camera: FreeCamera) => {
-    let fov = Cesium.Math.toDegrees((viewer.camera.frustum as Cesium.PerspectiveFrustum).fov);
+const changeBabylonCamera = (viewer: Viewer, camera: ArcRotateCamera) => {
+    let fov = Cesium.Math.toDegrees((viewer.camera.frustum as Cesium.PerspectiveFrustum).fovy);
     camera.fov = fov / 180 * Math.PI;
 
     let civm = viewer.camera.inverseViewMatrix;
@@ -28,9 +28,8 @@ const changeBabylonCamera = (viewer: Viewer, camera: FreeCamera) => {
         civm[12], civm[13], civm[14], civm[15]
     );
 
-    let scaling = BABYLON.Vector3.Zero();
-    let rotation = BABYLON.Quaternion.Identity();
-    let transform = BABYLON.Vector3.Zero();
+
+    let scaling = BABYLON.Vector3.Zero(), rotation = new BABYLON.Quaternion(), transform = BABYLON.Vector3.Zero();
     camera_matrix.decompose(scaling, rotation, transform);
     let camera_pos = cart2vec(transform),
         camera_direction = cart2vec(viewer.camera.direction),
@@ -75,7 +74,7 @@ export default function DefaultMap() {
         const cesiumViewer = viewer.current;
         const cesiumCamera = cesiumViewer.camera;
 
-        cesiumViewer.camera.flyTo({
+        cesiumCamera.flyTo({
             destination: Cesium.Cartesian3.fromDegrees(LNG, LAT, 300),
             orientation: {
                 heading: Cesium.Math.toRadians(0.0),
@@ -87,7 +86,8 @@ export default function DefaultMap() {
         babylonEngineRef.current = babylonEngine;
         const babylonScene = new Scene(babylonEngine);
         babylonScene.clearColor = new Color4(0, 0, 0, 0);
-        const babylonCamera = new FreeCamera("camera", new Vector3(0, 0, -10), babylonScene);
+        const babylonCamera = new ArcRotateCamera("camera", Math.PI / 2, Math.PI / 2, 2, BABYLON.Vector3.Zero(), babylonScene);
+        babylonCamera.attachControl(babylonCanvasRef.current,true)
         const root_node = new BABYLON.TransformNode("BaseNode", babylonScene);
         root_node.lookAt(base_point_up.subtract(base_point));
         root_node.addRotation(Math.PI / 2, 0, 0);
@@ -110,6 +110,7 @@ export default function DefaultMap() {
 
         const renderLoop = () => {
             if (!isMountedRef.current || cesiumViewer.isDestroyed()) {
+                console.log('not ready')
                 return;
             }
             try {
