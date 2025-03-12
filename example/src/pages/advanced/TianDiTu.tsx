@@ -1,4 +1,5 @@
 import { useCesium, useTianDiTu } from 'cesium-hooks'
+import { useEffect } from 'react';
 
 export default function TianDiTuMap() {
 
@@ -28,6 +29,10 @@ export default function TianDiTuMap() {
       imageAnnotation: true
     }
   });
+
+  useEffect(() => {
+    console.log(viewer.current.imageryLayers)
+  },[viewer])
 
   return (
     <div className="h-full w-full">
