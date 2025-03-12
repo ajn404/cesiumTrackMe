@@ -1,0 +1,1 @@
+import{r as s,M as n,j as e}from"./index-DJuXekMb.js";import{u}from"./useCesium-D53TAQ4A.js";function r(){const{mapProvider:a}=s.useContext(n),{cesiumContainerRef:t}=u(void 0,{tianDiTu:{enabled:a==="Tianditu",token:"fa4fa7129232846bfb71e9c37848b6df"}});return e.jsx("div",{className:"h-full w-full",children:e.jsx("div",{ref:t,className:"h-full w-full"})})}export{r as default};
