@@ -63,7 +63,7 @@ export const routes = [
                 icon: Route
             },
             {
-                title: "自定义着色器",
+                title: "自定义glb模型着色器",
                 path: "/advanced/shader",
                 element: LazyLoad(() => import('@/pages/advanced/Shader')),
                 icon: Route
@@ -79,6 +79,12 @@ export const routes = [
                 title: "实体",
                 path: "/advanced/entities",
                 element: LazyLoad(() => import('@/pages/advanced/Entities')),
+                icon: Grid
+            },
+            {
+                title: "自定义Primitive着色器",
+                path: "/advanced/custom-shader",
+                element: LazyLoad(() => import('@/pages/advanced/CustomShader')),
                 icon: Grid
             },
         ]
