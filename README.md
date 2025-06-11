@@ -61,6 +61,8 @@ A Cesium + React toolkit project based on monorepo architecture.
 
 ## Development
 
+**添加 .env**
+
 ```bash
 # Install Dependencies
 pnpm install

@@ -73,7 +73,7 @@ export default function Documentation() {
           <FileText className="w-8 h-8" />
           文档 - {page}
         </h1>
-        <div>
+        <div className='grid  gap-4'>
           <ReactMarkdown
             remarkPlugins={[
               remarkGfm,

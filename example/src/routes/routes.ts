@@ -39,7 +39,7 @@ export const routes = [
                 icon: Compass
             },
             {
-                title: "多地图",
+                title: "多地图(同步相机)",
                 path: "/basic/multiple",
                 element: LazyLoad(() => import('@/pages/basic/MultipleMap')),
                 icon: LucideBedDouble

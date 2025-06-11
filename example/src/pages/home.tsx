@@ -29,6 +29,9 @@ export function Home() {
                 <p className="mt-4 font-normal text-base text-neutral-300 max-w-full text-center mx-auto">
                     本站点是 cesium-hooks 的文档站点，你可以在这里查看 cesium-hooks 的文档，学习如何使用 cesium-hooks。
                 </p>
+                <p className="mt-4 font-normal text-xl text-blue-100 max-w-full text-center mx-auto">
+                    封装得比较浅，暂时只是在践行自己的一些思路或者学习cesium
+                </p>
             </div>
         </div>
     );
