@@ -7,6 +7,7 @@ export default function DefaultMap() {
   const { cesiumContainerRef } = useCesium(
      import.meta.env.VITE_ION_TOKEN,
     {
+      sceneModePicker: true,
       tianDiTu: {
         enabled: mapProvider === 'Tianditu',
         token: import.meta.env.VITE_TIANDITU_TOKEN

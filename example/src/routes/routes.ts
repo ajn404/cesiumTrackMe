@@ -97,6 +97,12 @@ export const routes = [
                 path: "/explore/integration",
                 element: LazyLoad(() => import('@/pages/explore/Integragtion')),
                 icon: Grid
+            },
+            {
+                title: "使用nasa的wmts服务",
+                path: "/explore/nasaWmts",
+                element: LazyLoad(() => import('@/pages/explore/nasaWmts')),
+                icon: Grid
             }
         ]
     },
