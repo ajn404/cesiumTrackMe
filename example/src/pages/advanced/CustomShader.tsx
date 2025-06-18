@@ -7,7 +7,6 @@ import { useContext } from 'react'
 export default function Water() {
     const { mapProvider } = useContext(MapContext)
     const { cesiumContainerRef, viewer } = useCesium(import.meta.env.VITE_ION_TOKEN, {
-        hideCredit: true,
         tianDiTu: {
             enabled: mapProvider === 'Tianditu',
             token: import.meta.env.VITE_TIANDITU_TOKEN

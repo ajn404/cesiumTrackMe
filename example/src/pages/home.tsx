@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { NavLink } from "react-router";
 
 type SpotlightProps = {
     gradientFirst?: string;
@@ -30,6 +31,20 @@ export function Home() {
                 </p>
                 <p className="mt-4 font-normal text-xl text-blue-100 max-w-full text-center mx-auto">
                     封装得比较浅，暂时只是在践行自己的一些思路或者学习cesium
+                </p>
+                <p className="mt-4 font-normal text-xl text-blue-100 max-w-full text-center mx-auto">
+                    <NavLink
+                        to="/reference"
+                        className="inline-flex items-center justify-center px-4 py-2 mt-6 text-base font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                    >
+                        参考文档
+                    </NavLink>
+                    <NavLink
+                        to="/dev"
+                        className="inline-flex ml-8 items-center justify-center px-4 py-2 mt-6 text-base font-medium text-white bg-yellow-600 border border-transparent rounded-md shadow-sm hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
+                    >
+                        开发日志
+                    </NavLink>
                 </p>
             </div>
         </div>
