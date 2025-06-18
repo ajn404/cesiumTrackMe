@@ -4,8 +4,6 @@ import { useContext, useEffect } from 'react'
 import { Cesium3DTileset, Credit, Ellipsoid, GeographicTilingScheme, UrlTemplateImageryProvider, WebMapTileServiceImageryProvider } from 'cesium';
 
 export default function DefaultMap() {
-  const { mapProvider } = useContext(MapContext)
-
   const imageProvide = new WebMapTileServiceImageryProvider({
     url: 'https://gibs-c.earthdata.nasa.gov/wmts/epsg3857/best/VIIRS_CityLights_2012/default//GoogleMapsCompatible_Level8/{z}/{y}/{x}.jpg',
     layer : 'BlueMarble_ShadedRelief',

@@ -5,6 +5,7 @@ import { LazyLoad } from "@/components/hoc/LazyLoad";
 export const routes = [
     {
         groupLabel: "基础功能",
+        collapsible: true,
         items: [
             {
                 title: "默认地图",
@@ -48,6 +49,7 @@ export const routes = [
     },
     {
         groupLabel: "进阶功能",
+        collapsible: true,
         items: [
             {
                 title: "轨迹追踪",
@@ -91,6 +93,7 @@ export const routes = [
     },
     {
         groupLabel: "探索",
+        collapsible: true,
         items: [
             {
                 title: "融合babylon",

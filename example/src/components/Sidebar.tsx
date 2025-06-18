@@ -18,13 +18,18 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Link, useLocation, useNavigate } from "react-router"
-import { FileText, Sun, Moon } from "lucide-react"
+import { FileText, Sun, Moon, ChevronDown, ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { routes } from "@/routes/routes"
 import { useTheme } from "@/context/ThemeProvider"
 import { MapContext, MapProviderType } from "@/context/MapProvider"
+import { motion, AnimatePresence } from "motion/react"
 
-export function Sidebar() {
+export interface SidebarProps {
+  collapsible?: "offcanvas" | "icon" | "none"
+}
+
+export function Sidebar({ collapsible = "offcanvas" }: SidebarProps) {
   const location = useLocation()
   const navigate = useNavigate()
   const { theme, setTheme } = useTheme()
@@ -43,56 +48,127 @@ export function Sidebar() {
     localStorage.setItem('mapProvider', value)
   }
 
+  // 记录哪些分组是折叠状态，key为groupLabel
+  const [collapsedGroups, setCollapsedGroups] = React.useState<Record<string, boolean>>({})
+
+  const toggleGroup = (label: string) => {
+    setCollapsedGroups(prev => ({ ...prev, [label]: !prev[label] }))
+  }
+
   return (
-    <ShadcnSidebar className="w-64 border-r p-4">
+    <ShadcnSidebar className="w-64 border-r p-0" collapsible={collapsible}>
       <SidebarContent>
-        <div className="px-4 py-4">
+        <div className="px-4 py-4 sticky top-0 bg-background z-10 flex items-center justify-between">
           <h1 className="text-lg font-semibold cursor-pointer hover:brightness-200" onClick={() => {
             navigate("/")
           }} >Cesium Hooks</h1>
         </div>
         {routes
           .filter((group) => group.items)
-          .map((group, index, filteredGroups) => (
-            <React.Fragment key={group.groupLabel}>
-              <SidebarGroup>
-                <SidebarGroupLabel>{group.groupLabel}</SidebarGroupLabel>
-                <SidebarGroupContent>
-                  <SidebarMenu>
-                    {group.items.map((item) => (
-                      <SidebarMenuItem key={item.path}>
-                        <SidebarMenuButton
-                          asChild
-                          className={cn(
-                            location.pathname === item.path && "bg-accent"
-                          )}
+          .map((group, index, filteredGroups) => {
+            const isCollapsible = group.collapsible
+            const isCollapsed = collapsedGroups[group.groupLabel]
+            return (
+              <React.Fragment key={group.groupLabel}>
+                <SidebarGroup>
+                  <div className="flex items-center justify-between">
+                    <SidebarGroupLabel>{group.groupLabel}</SidebarGroupLabel>
+                    {isCollapsible && (
+                      <button
+                        onClick={() => toggleGroup(group.groupLabel)}
+                        className="ml-2 p-1 hover:text-primary"
+                        title={isCollapsed ? "展开" : "折叠"}
+                        style={{ outline: "none", background: "none", border: "none" }}
+                      >
+                        {isCollapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+                      </button>
+                    )}
+                  </div>
+                  {isCollapsible ? (
+                    <AnimatePresence initial={false}>
+                      {!isCollapsed && (
+                        <motion.div
+                          key="content"
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.25, ease: "easeInOut" }}
+                          style={{ overflow: "hidden" }}
                         >
-                          <Link to={item.path} className="flex items-center gap-3">
-                            <item.icon className="h-4 w-4" />
-                            <span>{item.title}</span>
-                            {item.docs && (
-                              <button
-                                onClick={(e) => {
-                                  e.preventDefault()
-                                  e.stopPropagation()
-                                  navigate(`/${item.docs}`)
-                                }}
-                                className="ml-auto hover:text-primary"
-                                title="查看文档"
-                              >
-                                <FileText className="h-4 w-4" />
-                              </button>
-                            )}
-                          </Link>
-                        </SidebarMenuButton>
-                      </SidebarMenuItem>
-                    ))}
-                  </SidebarMenu>
-                </SidebarGroupContent>
-              </SidebarGroup>
-              {index !== filteredGroups.length - 1 && <SidebarSeparator />}
-            </React.Fragment>
-          ))}
+                          <SidebarGroupContent>
+                            <SidebarMenu>
+                              {group.items.map((item) => (
+                                <SidebarMenuItem key={item.path}>
+                                  <SidebarMenuButton
+                                    asChild
+                                    className={cn(
+                                      location.pathname === item.path && "bg-accent"
+                                    )}
+                                  >
+                                    <Link to={item.path} className="flex items-center gap-3">
+                                      <item.icon className="h-4 w-4" />
+                                      <span>{item.title}</span>
+                                      {item.docs && (
+                                        <button
+                                          onClick={(e) => {
+                                            e.preventDefault()
+                                            e.stopPropagation()
+                                            navigate(`/${item.docs}`)
+                                          }}
+                                          className="ml-auto hover:text-primary"
+                                          title="查看文档"
+                                        >
+                                          <FileText className="h-4 w-4" />
+                                        </button>
+                                      )}
+                                    </Link>
+                                  </SidebarMenuButton>
+                                </SidebarMenuItem>
+                              ))}
+                            </SidebarMenu>
+                          </SidebarGroupContent>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  ) : (
+                    <SidebarGroupContent>
+                      <SidebarMenu>
+                        {group.items.map((item) => (
+                          <SidebarMenuItem key={item.path}>
+                            <SidebarMenuButton
+                              asChild
+                              className={cn(
+                                location.pathname === item.path && "bg-accent"
+                              )}
+                            >
+                              <Link to={item.path} className="flex items-center gap-3">
+                                <item.icon className="h-4 w-4" />
+                                <span>{item.title}</span>
+                                {item.docs && (
+                                  <button
+                                    onClick={(e) => {
+                                      e.preventDefault()
+                                      e.stopPropagation()
+                                      navigate(`/${item.docs}`)
+                                    }}
+                                    className="ml-auto hover:text-primary"
+                                    title="查看文档"
+                                  >
+                                    <FileText className="h-4 w-4" />
+                                  </button>
+                                )}
+                              </Link>
+                            </SidebarMenuButton>
+                          </SidebarMenuItem>
+                        ))}
+                      </SidebarMenu>
+                    </SidebarGroupContent>
+                  )}
+                </SidebarGroup>
+                {index !== filteredGroups.length - 1 && <SidebarSeparator />}
+              </React.Fragment>
+            )
+          })}
         <Select value={mapProvider} onValueChange={(value) => handleMapProviderChange(value as MapProviderType)}>
           <SelectTrigger className="w-[180px] m-auto">
             <SelectValue placeholder="默认地图" />

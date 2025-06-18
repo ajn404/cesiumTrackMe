@@ -36,12 +36,12 @@ export default function Water() {
                                 u_resolution: new Cesium.Cartesian2(window.innerWidth, window.innerHeight)
                             },
                             source: `
-                            uniform float u_time;
+uniform float u_time;
 czm_material czm_getMaterial(czm_materialInput materialInput)
 {
     czm_material material = czm_getDefaultMaterial(materialInput);
-    material.diffuse = vec3(abs(sin(u_time)), 1.0, abs(cos(u_time)));
-    material.alpha = 0.9;
+    material.diffuse = vec3(1.0, abs(sin(u_time*2.0)), abs(cos(u_time)));
+    material.alpha = 0.5 + 0.5 * sin(u_time * 0.5);
     return material;
 }
                         `
@@ -70,6 +70,8 @@ czm_material czm_getMaterial(czm_materialInput materialInput)
             sceneRef.current.postRender.addEventListener(() => {
                 const currentTime = Cesium.JulianDate.now().secondsOfDay;
                 liquidGlassPrimitive.appearance.material.uniforms.u_time = currentTime - startTime;
+                //request render
+                viewer.current.scene.requestRender();
             });
 
             // Handle window resize
