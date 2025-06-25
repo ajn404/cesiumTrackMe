@@ -14,7 +14,7 @@ import {
   SceneMode
 } from "cesium";
 import "cesium/Build/Cesium/Widgets/widgets.css";
-import { useTianDiTu } from "./useTianDiTu";
+import { useTianDiTu } from "../imageProvider";
 
 export interface CesiumViewerOptions {
   // 基础配置
